@@ -34,6 +34,18 @@ flowchart LR
     O --> F[Infeasible or unresolved: no recommendation]
     E[Exhaustive small-case oracle] --> V[Compare feasibility and optimum]
     O --> V
+
+    classDef source fill:#dbeafe,stroke:#2563eb,color:#0f172a,stroke-width:2px;
+    classDef foundation fill:#bfdbfe,stroke:#1d4ed8,color:#0f172a,stroke-width:2px;
+    classDef capability fill:#93c5fd,stroke:#1e40af,color:#0f172a,stroke-width:2px;
+    classDef output fill:#60a5fa,stroke:#1e3a8a,color:#ffffff,stroke-width:2px;
+    classDef alert fill:#1e40af,stroke:#1e3a8a,color:#ffffff,stroke-width:2px;
+
+    class W,S,P,E source;
+    class C foundation;
+    class M,O,I,V capability;
+    class R output;
+    class F alert;
 ```
 
 ## Run it
