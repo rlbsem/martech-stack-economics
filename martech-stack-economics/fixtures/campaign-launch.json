@@ -1,0 +1,662 @@
+{
+  "schema": 1,
+  "id": "campaign-launch",
+  "currency": "USD",
+  "slot_minutes": 60,
+  "slots": 4,
+  "budget_cents": 2000,
+  "platforms": [
+    {
+      "id": "direct",
+      "fixed_cost_cents": 0
+    },
+    {
+      "id": "batch-hub",
+      "fixed_cost_cents": 120
+    },
+    {
+      "id": "stream-hub",
+      "fixed_cost_cents": 350
+    },
+    {
+      "id": "premium-hub",
+      "fixed_cost_cents": 700
+    }
+  ],
+  "resources": [
+    {
+      "id": "crm-api",
+      "unit": "requests"
+    },
+    {
+      "id": "destination-api",
+      "unit": "requests"
+    },
+    {
+      "id": "bulk-jobs",
+      "unit": "requests"
+    }
+  ],
+  "workloads": [
+    {
+      "id": "lead-handoff",
+      "owner": "revenue-operations",
+      "max_lag_minutes": 10,
+      "required_capabilities": [
+        "upserts",
+        "deletes",
+        "custom-fields"
+      ],
+      "allowed_regions": [
+        "ca"
+      ],
+      "options": [
+        {
+          "id": "rest",
+          "platform": "direct",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 5,
+          "batch_size": 100,
+          "cost_per_batch_cents": 6,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "bulk",
+          "platform": "batch-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 30,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1,
+            "bulk-jobs": 1
+          }
+        },
+        {
+          "id": "stream",
+          "platform": "stream-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 250,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "premium",
+          "platform": "premium-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 10,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "cheap-lossy",
+          "platform": "direct",
+          "region": "us",
+          "capabilities": [
+            "upserts"
+          ],
+          "lag_minutes": 90,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 0,
+          "resources": {
+            "crm-api": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "campaign-suppression",
+      "owner": "integrated-campaigns",
+      "max_lag_minutes": 10,
+      "required_capabilities": [
+        "upserts",
+        "deletes",
+        "custom-fields"
+      ],
+      "allowed_regions": [
+        "ca"
+      ],
+      "options": [
+        {
+          "id": "rest",
+          "platform": "direct",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 5,
+          "batch_size": 100,
+          "cost_per_batch_cents": 6,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "bulk",
+          "platform": "batch-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 30,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1,
+            "bulk-jobs": 1
+          }
+        },
+        {
+          "id": "stream",
+          "platform": "stream-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 250,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "premium",
+          "platform": "premium-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 10,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "cheap-lossy",
+          "platform": "direct",
+          "region": "us",
+          "capabilities": [
+            "upserts"
+          ],
+          "lag_minutes": 90,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 0,
+          "resources": {
+            "crm-api": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "attribution-refresh",
+      "owner": "marketing-analytics",
+      "max_lag_minutes": 60,
+      "required_capabilities": [
+        "upserts",
+        "deletes",
+        "custom-fields"
+      ],
+      "allowed_regions": [
+        "ca"
+      ],
+      "options": [
+        {
+          "id": "rest",
+          "platform": "direct",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 5,
+          "batch_size": 100,
+          "cost_per_batch_cents": 6,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "bulk",
+          "platform": "batch-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 30,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1,
+            "bulk-jobs": 1
+          }
+        },
+        {
+          "id": "stream",
+          "platform": "stream-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 250,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "premium",
+          "platform": "premium-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 10,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "cheap-lossy",
+          "platform": "direct",
+          "region": "us",
+          "capabilities": [
+            "upserts"
+          ],
+          "lag_minutes": 90,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 0,
+          "resources": {
+            "crm-api": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "web-personalization",
+      "owner": "web",
+      "max_lag_minutes": 10,
+      "required_capabilities": [
+        "upserts",
+        "deletes",
+        "custom-fields"
+      ],
+      "allowed_regions": [
+        "ca"
+      ],
+      "options": [
+        {
+          "id": "rest",
+          "platform": "direct",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 5,
+          "batch_size": 100,
+          "cost_per_batch_cents": 6,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "bulk",
+          "platform": "batch-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 30,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1,
+            "bulk-jobs": 1
+          }
+        },
+        {
+          "id": "stream",
+          "platform": "stream-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 250,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "premium",
+          "platform": "premium-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 10,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "cheap-lossy",
+          "platform": "direct",
+          "region": "us",
+          "capabilities": [
+            "upserts"
+          ],
+          "lag_minutes": 90,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 0,
+          "resources": {
+            "crm-api": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "product-enrichment",
+      "owner": "product-marketing",
+      "max_lag_minutes": 60,
+      "required_capabilities": [
+        "upserts",
+        "deletes",
+        "custom-fields"
+      ],
+      "allowed_regions": [
+        "ca"
+      ],
+      "options": [
+        {
+          "id": "rest",
+          "platform": "direct",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 5,
+          "batch_size": 100,
+          "cost_per_batch_cents": 6,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "bulk",
+          "platform": "batch-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 30,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1,
+            "bulk-jobs": 1
+          }
+        },
+        {
+          "id": "stream",
+          "platform": "stream-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 250,
+          "cost_per_batch_cents": 2,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "premium",
+          "platform": "premium-hub",
+          "region": "ca",
+          "capabilities": [
+            "upserts",
+            "deletes",
+            "custom-fields"
+          ],
+          "lag_minutes": 2,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 10,
+          "resources": {
+            "crm-api": 1,
+            "destination-api": 1
+          }
+        },
+        {
+          "id": "cheap-lossy",
+          "platform": "direct",
+          "region": "us",
+          "capabilities": [
+            "upserts"
+          ],
+          "lag_minutes": 90,
+          "batch_size": 1000,
+          "cost_per_batch_cents": 0,
+          "resources": {
+            "crm-api": 1
+          }
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "normal",
+      "demands": {
+        "lead-handoff": [
+          100,
+          200,
+          200,
+          100
+        ],
+        "campaign-suppression": [
+          200,
+          400,
+          400,
+          200
+        ],
+        "attribution-refresh": [
+          300,
+          600,
+          600,
+          300
+        ],
+        "web-personalization": [
+          200,
+          400,
+          400,
+          200
+        ],
+        "product-enrichment": [
+          100,
+          200,
+          200,
+          100
+        ]
+      },
+      "capacities": {
+        "crm-api": {
+          "per_slot": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "total": 250
+        },
+        "destination-api": {
+          "per_slot": [
+            180,
+            180,
+            180,
+            180
+          ],
+          "total": 450
+        },
+        "bulk-jobs": {
+          "per_slot": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "total": 60
+        }
+      }
+    },
+    {
+      "id": "launch-surge",
+      "demands": {
+        "lead-handoff": [
+          100,
+          2000,
+          4000,
+          200
+        ],
+        "campaign-suppression": [
+          200,
+          4000,
+          8000,
+          400
+        ],
+        "attribution-refresh": [
+          300,
+          6000,
+          12000,
+          600
+        ],
+        "web-personalization": [
+          200,
+          4000,
+          8000,
+          400
+        ],
+        "product-enrichment": [
+          100,
+          2000,
+          4000,
+          200
+        ]
+      },
+      "capacities": {
+        "crm-api": {
+          "per_slot": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "total": 250
+        },
+        "destination-api": {
+          "per_slot": [
+            180,
+            180,
+            180,
+            180
+          ],
+          "total": 450
+        },
+        "bulk-jobs": {
+          "per_slot": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "total": 60
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "wheel": "martech_stack_economics-1.0.0-py3-none-any.whl",
+  "wheel_sha256": "c8eef80c5d8746b715235336f4bd376f486cd482624a186a322da4575a4f02ad",
+  "installed_wheel_matches_source": true,
+  "evidence_fingerprints_match": true,
+  "relative_markdown_links_resolve": true,
+  "validation": "verification.json",
+  "new_repository_hosted_ci": "not_observed"
+}

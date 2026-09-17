@@ -1,0 +1,79 @@
+{
+  "inspected_at": "2026-09-17T20:01:39.523787+00:00",
+  "public_repositories": [
+    "enterprise-agent-runtime-evaluation",
+    "enterprise-martech-ai-control-plane",
+    "game-telemetry-analytics-engineering",
+    "martech-migration-assurance",
+    "rlbsem",
+    "temporal-customer-audiences"
+  ],
+  "profile_readme_blob": "a2ccdcb7efa5560f16ba85f8cb063a5446826131",
+  "repositories": [
+    {
+      "repository": "enterprise-agent-runtime-evaluation",
+      "url": "https://github.com/rlbsem/enterprise-agent-runtime-evaluation",
+      "commit": "e6033b9bfeab1a37c452859ab3d7b93c6198074d",
+      "checkout": "enterprise-agent-runtime-evaluation-e6033b9bfeab1a37c452859ab3d7b93c6198074d",
+      "current_commit_runs": [
+        {
+          "id": 35055431823,
+          "name": "Runtime invariants and agent release regression",
+          "head_sha": "e6033b9bfeab1a37c452859ab3d7b93c6198074d",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/rlbsem/enterprise-agent-runtime-evaluation/actions/runs/35055431823"
+        }
+      ]
+    },
+    {
+      "repository": "enterprise-martech-ai-control-plane",
+      "url": "https://github.com/rlbsem/enterprise-martech-ai-control-plane",
+      "commit": "8b0435a04c5b5a9ac8d69181709b8044e4ce879a",
+      "checkout": "enterprise-martech-ai-control-plane-8b0435a04c5b5a9ac8d69181709b8044e4ce879a",
+      "current_commit_runs": [
+        {
+          "id": 35094239650,
+          "name": "PostgreSQL governance and recovery",
+          "head_sha": "8b0435a04c5b5a9ac8d69181709b8044e4ce879a",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/rlbsem/enterprise-martech-ai-control-plane/actions/runs/35094239650"
+        }
+      ]
+    },
+    {
+      "repository": "martech-migration-assurance",
+      "url": "https://github.com/rlbsem/martech-migration-assurance",
+      "commit": "f70fe2136cd1bee5efc86a6bfc645818bad3d217",
+      "checkout": "martech-migration-assurance-f70fe2136cd1bee5efc86a6bfc645818bad3d217",
+      "current_commit_runs": [
+        {
+          "id": 35055471699,
+          "name": "Migration preservation and cutover proof",
+          "head_sha": "f70fe2136cd1bee5efc86a6bfc645818bad3d217",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/rlbsem/martech-migration-assurance/actions/runs/35055471699"
+        }
+      ]
+    },
+    {
+      "repository": "temporal-customer-audiences",
+      "url": "https://github.com/rlbsem/temporal-customer-audiences",
+      "commit": "80f052953cd30b42b0b045c45e4ade46e646cd3f",
+      "checkout": "temporal-customer-audiences-80f052953cd30b42b0b045c45e4ade46e646cd3f",
+      "current_commit_runs": [
+        {
+          "id": 35055453097,
+          "name": "Temporal audience history and incremental equivalence",
+          "head_sha": "80f052953cd30b42b0b045c45e4ade46e646cd3f",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/rlbsem/temporal-customer-audiences/actions/runs/35055453097"
+        }
+      ]
+    }
+  ],
+  "scope": "Fresh public source snapshots and current-commit workflow status; existing suites not re-executed."
+}

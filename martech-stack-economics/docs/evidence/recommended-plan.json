@@ -1,0 +1,432 @@
+{
+  "contract": 1,
+  "input_hash": "3af3122c31d3b75d5884211f25ebee6a89fc8c7722dd688c871943595361ec36",
+  "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+  "solver": {
+    "backend": "SciPy milp / HiGHS",
+    "scipy": "1.17.0",
+    "numpy": "2.3.5",
+    "time_limit_seconds": 10.0,
+    "status": 0,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "objective_cents": 782,
+    "lower_bound_cents": 782.0,
+    "relative_gap": 0.0
+  },
+  "selection": {
+    "lead-handoff": "stream",
+    "campaign-suppression": "stream",
+    "attribution-refresh": "bulk",
+    "web-personalization": "stream",
+    "product-enrichment": "bulk"
+  },
+  "assessment": {
+    "feasible": true,
+    "violations": [],
+    "enabled_platforms": [
+      "batch-hub",
+      "stream-hub"
+    ],
+    "fixed_cost_cents": 470,
+    "worst_cost_cents": 782,
+    "scenarios": [
+      {
+        "id": "normal",
+        "cost_cents": 518,
+        "charges": [
+          {
+            "workload": "lead-handoff",
+            "option": "stream",
+            "batches_by_slot": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "records_by_slot": [
+              100,
+              200,
+              200,
+              100
+            ],
+            "variable_cost_cents": 8
+          },
+          {
+            "workload": "campaign-suppression",
+            "option": "stream",
+            "batches_by_slot": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "records_by_slot": [
+              200,
+              400,
+              400,
+              200
+            ],
+            "variable_cost_cents": 12
+          },
+          {
+            "workload": "attribution-refresh",
+            "option": "bulk",
+            "batches_by_slot": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "records_by_slot": [
+              300,
+              600,
+              600,
+              300
+            ],
+            "variable_cost_cents": 8
+          },
+          {
+            "workload": "web-personalization",
+            "option": "stream",
+            "batches_by_slot": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "records_by_slot": [
+              200,
+              400,
+              400,
+              200
+            ],
+            "variable_cost_cents": 12
+          },
+          {
+            "workload": "product-enrichment",
+            "option": "bulk",
+            "batches_by_slot": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "records_by_slot": [
+              100,
+              200,
+              200,
+              100
+            ],
+            "variable_cost_cents": 8
+          }
+        ],
+        "capacity": [
+          {
+            "resource": "crm-api",
+            "slot": 0,
+            "used": 5,
+            "limit": 100,
+            "headroom": 95
+          },
+          {
+            "resource": "crm-api",
+            "slot": 1,
+            "used": 7,
+            "limit": 100,
+            "headroom": 93
+          },
+          {
+            "resource": "crm-api",
+            "slot": 2,
+            "used": 7,
+            "limit": 100,
+            "headroom": 93
+          },
+          {
+            "resource": "crm-api",
+            "slot": 3,
+            "used": 5,
+            "limit": 100,
+            "headroom": 95
+          },
+          {
+            "resource": "crm-api",
+            "slot": "total",
+            "used": 24,
+            "limit": 250,
+            "headroom": 226
+          },
+          {
+            "resource": "destination-api",
+            "slot": 0,
+            "used": 5,
+            "limit": 180,
+            "headroom": 175
+          },
+          {
+            "resource": "destination-api",
+            "slot": 1,
+            "used": 7,
+            "limit": 180,
+            "headroom": 173
+          },
+          {
+            "resource": "destination-api",
+            "slot": 2,
+            "used": 7,
+            "limit": 180,
+            "headroom": 173
+          },
+          {
+            "resource": "destination-api",
+            "slot": 3,
+            "used": 5,
+            "limit": 180,
+            "headroom": 175
+          },
+          {
+            "resource": "destination-api",
+            "slot": "total",
+            "used": 24,
+            "limit": 450,
+            "headroom": 426
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": 0,
+            "used": 2,
+            "limit": 20,
+            "headroom": 18
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": 1,
+            "used": 2,
+            "limit": 20,
+            "headroom": 18
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": 2,
+            "used": 2,
+            "limit": 20,
+            "headroom": 18
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": 3,
+            "used": 2,
+            "limit": 20,
+            "headroom": 18
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": "total",
+            "used": 8,
+            "limit": 60,
+            "headroom": 52
+          }
+        ]
+      },
+      {
+        "id": "launch-surge",
+        "cost_cents": 782,
+        "charges": [
+          {
+            "workload": "lead-handoff",
+            "option": "stream",
+            "batches_by_slot": [
+              1,
+              8,
+              16,
+              1
+            ],
+            "records_by_slot": [
+              100,
+              2000,
+              4000,
+              200
+            ],
+            "variable_cost_cents": 52
+          },
+          {
+            "workload": "campaign-suppression",
+            "option": "stream",
+            "batches_by_slot": [
+              1,
+              16,
+              32,
+              2
+            ],
+            "records_by_slot": [
+              200,
+              4000,
+              8000,
+              400
+            ],
+            "variable_cost_cents": 102
+          },
+          {
+            "workload": "attribution-refresh",
+            "option": "bulk",
+            "batches_by_slot": [
+              1,
+              6,
+              12,
+              1
+            ],
+            "records_by_slot": [
+              300,
+              6000,
+              12000,
+              600
+            ],
+            "variable_cost_cents": 40
+          },
+          {
+            "workload": "web-personalization",
+            "option": "stream",
+            "batches_by_slot": [
+              1,
+              16,
+              32,
+              2
+            ],
+            "records_by_slot": [
+              200,
+              4000,
+              8000,
+              400
+            ],
+            "variable_cost_cents": 102
+          },
+          {
+            "workload": "product-enrichment",
+            "option": "bulk",
+            "batches_by_slot": [
+              1,
+              2,
+              4,
+              1
+            ],
+            "records_by_slot": [
+              100,
+              2000,
+              4000,
+              200
+            ],
+            "variable_cost_cents": 16
+          }
+        ],
+        "capacity": [
+          {
+            "resource": "crm-api",
+            "slot": 0,
+            "used": 5,
+            "limit": 100,
+            "headroom": 95
+          },
+          {
+            "resource": "crm-api",
+            "slot": 1,
+            "used": 48,
+            "limit": 100,
+            "headroom": 52
+          },
+          {
+            "resource": "crm-api",
+            "slot": 2,
+            "used": 96,
+            "limit": 100,
+            "headroom": 4
+          },
+          {
+            "resource": "crm-api",
+            "slot": 3,
+            "used": 7,
+            "limit": 100,
+            "headroom": 93
+          },
+          {
+            "resource": "crm-api",
+            "slot": "total",
+            "used": 156,
+            "limit": 250,
+            "headroom": 94
+          },
+          {
+            "resource": "destination-api",
+            "slot": 0,
+            "used": 5,
+            "limit": 180,
+            "headroom": 175
+          },
+          {
+            "resource": "destination-api",
+            "slot": 1,
+            "used": 48,
+            "limit": 180,
+            "headroom": 132
+          },
+          {
+            "resource": "destination-api",
+            "slot": 2,
+            "used": 96,
+            "limit": 180,
+            "headroom": 84
+          },
+          {
+            "resource": "destination-api",
+            "slot": 3,
+            "used": 7,
+            "limit": 180,
+            "headroom": 173
+          },
+          {
+            "resource": "destination-api",
+            "slot": "total",
+            "used": 156,
+            "limit": 450,
+            "headroom": 294
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": 0,
+            "used": 2,
+            "limit": 20,
+            "headroom": 18
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": 1,
+            "used": 8,
+            "limit": 20,
+            "headroom": 12
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": 2,
+            "used": 16,
+            "limit": 20,
+            "headroom": 4
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": 3,
+            "used": 2,
+            "limit": 20,
+            "headroom": 18
+          },
+          {
+            "resource": "bulk-jobs",
+            "slot": "total",
+            "used": 28,
+            "limit": 60,
+            "headroom": 32
+          }
+        ]
+      }
+    ]
+  },
+  "status": "optimal"
+}

@@ -1,0 +1,38 @@
+{
+  "executed_at": "2026-09-17T20:21:11.894357+00:00",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "numpy": "2.3.3",
+    "scipy": "1.16.2",
+    "pytest": "8.4.2",
+    "ruff": "0.13.0"
+  },
+  "tests": 51,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 3.687,
+  "source_sha256": {
+    ".github/workflows/verify.yml": "3b7552a86d4cbd5062772968c5cb758b34d36c2345182246c94a808d7ee04ae7",
+    "fixtures/campaign-launch.json": "232f077ef976376aafe8c09c86b0fcc0f55d49fa542ad6cfce297a6cb9ca7586",
+    "pyproject.toml": "76a3706ad2622d912f285a50bc48a766cad83a9af92f466d6bb3cc9604136ea6",
+    "requirements.lock": "f589b31aaa6f69705399cafc38dbb4173a8ae9ee9d6c90870813299e09de995c",
+    "scripts/demo.py": "d765a9413e637e6bfa867418e6a5167c12f40d568349925567d4d386cba048d8",
+    "scripts/verify.py": "587bf9a985976aec021081007a952712f85805fbf55fb1ef103574bdb8618aed",
+    "src/stack_economics/__init__.py": "931db4d9867913f64cc213aa0a42991ce7156cf5d39471790d58747925428638",
+    "src/stack_economics/accounting.py": "ff0fdfce873216ca934855b8f0f67ebdf606fe326b647e1ecd1233d1e0e317c5",
+    "src/stack_economics/cli.py": "fe9820f4626d74a536e43c06061a2f5966bdff72480573a3b13478e33feda8a4",
+    "src/stack_economics/contracts.py": "165de0eb6d58ccc9f73e695e27bd0b07cd98efd09f2c1901c43b4cc41a1e050b",
+    "src/stack_economics/demo.py": "df6959608249635cf99b8f65b902c9f58c8ae1523ff80b6defa000ad5969e859",
+    "src/stack_economics/fixtures.py": "9d22fdcfd13b1fdbb118b1aed55db1a1b8ba5289ac8048061391639cd1d3243f",
+    "src/stack_economics/model.py": "5b94d9726def4e7cbb245ba331b9d356df684ee1da155c0ab5fddb5427884af8",
+    "src/stack_economics/planner.py": "a3e56138bd7900f28660b2cd217afbbe95810484094d7293d288734af08ae0d7",
+    "tests/conftest.py": "08ffb2042f6d7016384b2540ce4a68b1e4a9281c53d312413de5ed786e951c12",
+    "tests/test_failures.py": "a7ce8d0430106c361b8c202a48e61a74f0ef2dad182a29ae9a682eb306f65549",
+    "tests/test_planning.py": "43f08d8719360d02843d4fdb6582b7aee3762d3bd4973442be1fdc49ca13c2b5"
+  },
+  "installation": "installed_wheel",
+  "hosted_ci": "not_observed",
+  "scope": "Local MILP solves, independent integer accounting/exhaustive oracle, CLI and failure injection; synthetic inputs"
+}

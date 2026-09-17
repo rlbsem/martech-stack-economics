@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "martech-stack-economics"
+version = "1.0.0"
+description = "Scenario-constrained integration cost and capacity planning with independent verification"
+requires-python = ">=3.12"
+dependencies = ["numpy==2.3.3", "scipy==1.16.2"]
+
+[project.scripts]
+stack-economics = "stack_economics.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 115
+target-version = "py312"
+
