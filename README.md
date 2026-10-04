@@ -6,6 +6,12 @@ This executable planner selects a cost-minimal integration configuration for a f
 
 The business value is a defensible architecture decision: which workflows should share an integration platform, which need faster routes, and when a proposed saving is infeasible. The output includes the arithmetic and rejected alternatives a platform architect can discuss with Marketing, Web, Product Marketing and integration owners.
 
+**Independent synthetic planning:** costs, demand and service envelopes are declared inputs; no vendor performance or realized savings are claimed.
+
+![Executed stack optimization: selected configuration, independent optimum check and capacity tradeoffs](docs/images/optimization-result.svg)
+
+*Generated from the actual solve and independent checks. One configuration must satisfy normal demand and the campaign surge; cheap plans that violate constraints receive no recommendation. [Full accounting and rejected alternatives](docs/evidence/report.md).*
+
 **Start with the [executed proof](docs/evidence/report.md).** Five synthetic workflows span lead handoff, campaign suppression, attribution, web personalization and product enrichment.
 
 | Engineering question | Executed result |
@@ -48,6 +54,8 @@ flowchart LR
     class F alert;
 ```
 
+The evidence figure is a static projection of the linked JSON, not an application screenshot. Regenerate it with `python docs/images/render.py` after the corresponding evaluation or planning evidence is refreshed.
+
 ## Run it
 
 Use Python **3.12**, from the extracted repository root:
@@ -86,6 +94,6 @@ Python makes the input and accounting readable. SciPy's HiGHS-backed mixed-integ
 
 This is an independent, synthetic **offline planning system**. Route capability and latency declarations are inputs, not executed vendor integrations or measured service guarantees. Capacity is modeled per hour and per horizon; within-hour queues, network timing, live scheduling, probabilistic demand and unmodeled outages are outside the proof. No campaign is sent and no procurement action is taken.
 
-The executed environment is local Windows with Python, NumPy and SciPy. CI is supplied for Windows and Ubuntu; **hosted CI for this new repository has not been observed**. Existing repositories' successful workflow statuses do not establish this project's CI result.
+The executed environment is local Windows with Python, NumPy and SciPy. No GitHub Actions workflow is present in the current public repository, so no hosted CI result is claimed. Local verification executes the solver, independent accountant, exhaustive oracle and failure tests.
 
 [Actual validation and limitations](docs/validation.md) · [Generated test/environment record](docs/evidence/verification.json) · [Presentation and handoff](docs/handoff.md)

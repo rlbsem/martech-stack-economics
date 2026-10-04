@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+<title id="title">Executed integration configuration optimum and capacity tradeoffs</title>
+<desc id="desc">Synthetic four-hour planning result. The constrained optimum costs 782 cents versus 1340 cents for the feasible all-premium reference. Three workflows use streaming and two use bulk. Independent enumeration checks 3125 configurations. Reduced capacity changes the optimum and can make the problem infeasible.</desc>
+<rect width="1000" height="650" fill="#f8fafc"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#172b43}.small{font-size:17px}.label{font-size:20px}.value{font-size:28px;font-weight:bold}</style>
+<text x="36" y="42" class="small">CONSTRAINED STACK ECONOMICS / EXECUTED RESULT</text>
+<text x="36" y="84" class="value">One configuration must survive normal demand and a launch surge.</text>
+<text x="36" y="116" class="small">Synthetic prices, demand and service envelopes · four-hour horizon · no realized savings</text>
+<text x="36" y="163" class="label">Constrained optimum</text>
+<rect x="36" y="175" width="210.1" height="25" rx="4" fill="#2563eb"/>
+<text x="258.08955223880594" y="195" class="small">782 cents</text>
+<text x="36" y="252" class="label">Feasible all-premium reference</text>
+<rect x="36" y="264" width="360.0" height="25" rx="4" fill="#64748b"/>
+<text x="408.0" y="284" class="small">1,340 cents</text>
+<text x="540" y="164" class="label">Selected configuration</text>
+<text x="540" y="201" class="small">lead-handoff → stream</text>
+<text x="540" y="230" class="small">campaign-suppression → stream</text>
+<text x="540" y="259" class="small">attribution-refresh → bulk</text>
+<text x="540" y="288" class="small">web-personalization → stream</text>
+<text x="540" y="317" class="small">product-enrichment → bulk</text>
+<text x="36" y="365" class="label">Independent enumeration: 3,125 configurations; same optimum.</text>
+<text x="36" y="410" class="label">CRM requests/hour: capacity changes the decision, not just the speed.</text>
+<rect x="36" y="432" width="172" height="99" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="52" y="463" class="label">100 / hour</text>
+<text x="52" y="499" class="small">782 cents</text>
+<rect x="223" y="432" width="172" height="99" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="239" y="463" class="label">90 / hour</text>
+<text x="239" y="499" class="small">1,236 cents</text>
+<rect x="410" y="432" width="172" height="99" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="426" y="463" class="label">60 / hour</text>
+<text x="426" y="499" class="small">1,236 cents</text>
+<rect x="597" y="432" width="172" height="99" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="613" y="463" class="label">40 / hour</text>
+<text x="613" y="499" class="small">1,236 cents</text>
+<rect x="784" y="432" width="172" height="99" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="800" y="463" class="label">30 / hour</text>
+<text x="800" y="499" class="small">INFEASIBLE</text>
+<text x="36" y="574" class="small">Budget 781 cents: no feasible recommendation. Cheap lossy routes are also rejected.</text>
+<text x="36" y="606" class="small">Capability, region, freshness and quota constraints remain binding. Declared latency is not measured.</text>
+<metadata>{&quot;source&quot;: &quot;docs/evidence/planning-proof.json&quot;, &quot;sha256&quot;: &quot;123618ce0c094cfad3c25445aa1995911afde95993c0661f1f9ce2c94f865ca3&quot;}</metadata>
+</svg>
