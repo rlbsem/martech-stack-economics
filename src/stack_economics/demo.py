@@ -60,22 +60,22 @@ def run(spec, output):
     report = ["# Executed integration economics proof", "",
               "All demand, costs, capability declarations and service envelopes are synthetic. These are computed planning results, not observed vendor performance or business savings.", "",
               "| Question | Executed result |", "|---|---|",
-              f"| Cheapest scenario-feasible modeled configuration | {optimized_cost} cents per four-hour horizon |",
-              f"| Feasible all-premium reference | {reference_cost} cents per horizon |",
-              f"| Difference against that reference | {reference_cost - optimized_cost} cents ({(reference_cost - optimized_cost) / reference_cost:.1%}); hypothetical input-model difference |",
+              f"| Cheapest scenario-feasible modeled configuration | ${optimized_cost / 100:,.2f} per four-hour horizon |",
+              f"| Feasible all-premium reference | ${reference_cost / 100:,.2f} per horizon |",
+              f"| Difference against that reference | ${(reference_cost - optimized_cost) / 100:,.2f} ({(reference_cost - optimized_cost) / reference_cost:.1%}); hypothetical input-model difference |",
               f"| Independent optimum check | Enumerated all {exhaustive_result['configurations_checked']} configurations; same optimum |",
               "| Normal-only cheaper configuration under surge | Rejected for shared capacity violations |",
               "| Cheapest lossy route | Rejected for freshness, missing capabilities and region |",
-              f"| Budget of {tight['budget_cents']} cents | Infeasible; no recommendation |",
+              f"| Budget of ${tight['budget_cents'] / 100:,.2f} | Infeasible; no recommendation |",
               "| Saved recommendation after assumptions change | Refused as stale |", "",
               "## Selected routes", "", "| Workflow | Route |", "|---|---|"]
     report.extend(f"| {key} | {value} |" for key, value in robust["selection"].items())
     report += ["", "## Capacity tradeoffs", "",
                "Each row is a new solve with the same demand and hourly CRM capacity changed in every scenario. These finite differences are not continuous shadow prices or purchase recommendations.", "",
-               "| CRM requests per hour | Status | Worst modeled cost, cents |", "|---|---|---|"]
+               "| CRM requests per hour | Status | Worst modeled cost |", "|---|---|---|"]
     for item in frontier:
         plan = item["plan"]
-        cost = plan["assessment"]["worst_cost_cents"] if plan["assessment"] else "no feasible plan"
+        cost = f"${plan['assessment']['worst_cost_cents'] / 100:,.2f}" if plan["assessment"] else "no feasible plan"
         report.append(f"| {item['crm_requests_per_slot']} | {plan['status']} | {cost} |")
     report += ["", "[Full assumptions, rejected plans, charges, quotas, headroom and conflicts](planning-proof.json)", "",
                "The optimizer chooses one fixed configuration for all supplied scenarios. It does not dynamically switch after observing a surge. The capacity model includes both per-hour and horizon quotas; it does not model within-hour queuing. Route latency bounds are declared inputs conditional on staying within capacity, not measured guarantees.", ""]

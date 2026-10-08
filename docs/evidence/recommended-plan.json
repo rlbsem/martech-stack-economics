@@ -1,11 +1,11 @@
 {
   "contract": 1,
   "input_hash": "3af3122c31d3b75d5884211f25ebee6a89fc8c7722dd688c871943595361ec36",
-  "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+  "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
   "solver": {
     "backend": "SciPy milp / HiGHS",
-    "scipy": "1.17.0",
-    "numpy": "2.3.5",
+    "scipy": "1.16.2",
+    "numpy": "2.3.3",
     "time_limit_seconds": 10.0,
     "status": 0,
     "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",

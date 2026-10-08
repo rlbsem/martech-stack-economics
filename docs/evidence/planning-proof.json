@@ -663,15 +663,15 @@
     ]
   },
   "input_hash": "3af3122c31d3b75d5884211f25ebee6a89fc8c7722dd688c871943595361ec36",
-  "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+  "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
   "normal_only_plan": {
     "contract": 1,
     "input_hash": "2ca137e213c17796c24423d48950fea782a3e4c299f78e9923b446dc3f5414ec",
-    "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+    "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
     "solver": {
       "backend": "SciPy milp / HiGHS",
-      "scipy": "1.17.0",
-      "numpy": "2.3.5",
+      "scipy": "1.16.2",
+      "numpy": "2.3.3",
       "time_limit_seconds": 10.0,
       "status": 0,
       "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
@@ -1768,11 +1768,11 @@
   "robust_plan": {
     "contract": 1,
     "input_hash": "3af3122c31d3b75d5884211f25ebee6a89fc8c7722dd688c871943595361ec36",
-    "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+    "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
     "solver": {
       "backend": "SciPy milp / HiGHS",
-      "scipy": "1.17.0",
-      "numpy": "2.3.5",
+      "scipy": "1.16.2",
+      "numpy": "2.3.3",
       "time_limit_seconds": 10.0,
       "status": 0,
       "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
@@ -3795,11 +3795,11 @@
       "plan": {
         "contract": 1,
         "input_hash": "3af3122c31d3b75d5884211f25ebee6a89fc8c7722dd688c871943595361ec36",
-        "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+        "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
         "solver": {
           "backend": "SciPy milp / HiGHS",
-          "scipy": "1.17.0",
-          "numpy": "2.3.5",
+          "scipy": "1.16.2",
+          "numpy": "2.3.3",
           "time_limit_seconds": 10.0,
           "status": 0,
           "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
@@ -4892,11 +4892,11 @@
       "plan": {
         "contract": 1,
         "input_hash": "1b0fc7e9c2d9e6bf6649c7c1ff400ba7ee62d7bccdea66bdef85605d21711170",
-        "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+        "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
         "solver": {
           "backend": "SciPy milp / HiGHS",
-          "scipy": "1.17.0",
-          "numpy": "2.3.5",
+          "scipy": "1.16.2",
+          "numpy": "2.3.3",
           "time_limit_seconds": 10.0,
           "status": 0,
           "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
@@ -5989,11 +5989,11 @@
       "plan": {
         "contract": 1,
         "input_hash": "f061c3f48756d6a6a53fd87dc494793bcaf0174cc55431b867c08c45ae76babb",
-        "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+        "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
         "solver": {
           "backend": "SciPy milp / HiGHS",
-          "scipy": "1.17.0",
-          "numpy": "2.3.5",
+          "scipy": "1.16.2",
+          "numpy": "2.3.3",
           "time_limit_seconds": 10.0,
           "status": 0,
           "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
@@ -7086,11 +7086,11 @@
       "plan": {
         "contract": 1,
         "input_hash": "b1fbe57570b5e384fa99e3089ccae8eec4a14ba7b54152b41d33b9ec7ebd64ef",
-        "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+        "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
         "solver": {
           "backend": "SciPy milp / HiGHS",
-          "scipy": "1.17.0",
-          "numpy": "2.3.5",
+          "scipy": "1.16.2",
+          "numpy": "2.3.3",
           "time_limit_seconds": 10.0,
           "status": 0,
           "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
@@ -8183,11 +8183,11 @@
       "plan": {
         "contract": 1,
         "input_hash": "b8132e7f3da0c4ad29f6a90362371c699bc1a4adb6813fa62ba876e406e9b365",
-        "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+        "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
         "solver": {
           "backend": "SciPy milp / HiGHS",
-          "scipy": "1.17.0",
-          "numpy": "2.3.5",
+          "scipy": "1.16.2",
+          "numpy": "2.3.3",
           "time_limit_seconds": 10.0,
           "status": 2,
           "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)"
@@ -8873,11 +8873,11 @@
     "result": {
       "contract": 1,
       "input_hash": "560e0b94b7273e50693091cab09343c8b06b7560039feb87d5dea27c3e1ef7c3",
-      "implementation_hash": "bf99855dc46608ccaabc31aa8c7dd39ff30b64ba2191e073d527e15f147a6640",
+      "implementation_hash": "14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42",
       "solver": {
         "backend": "SciPy milp / HiGHS",
-        "scipy": "1.17.0",
-        "numpy": "2.3.5",
+        "scipy": "1.16.2",
+        "numpy": "2.3.3",
         "time_limit_seconds": 10.0,
         "status": 2,
         "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)"
