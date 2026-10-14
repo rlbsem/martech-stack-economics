@@ -24,9 +24,9 @@ The business value is a defensible architecture decision: which workflows should
 
 The example's optimum is **$7.82** versus **$13.40** for its feasible all-premium reference over a four-hour horizon. This is arithmetic on deliberately synthetic prices and demand—not a vendor benchmark, forecast or realized saving. The precise figures matter as reproducible checks, not as a commercial ROI claim.
 
-## Why this adds to the portfolio
+## Architecture decision boundary
 
-My four existing public architecture projects cover governed execution, agent evaluation, temporal audience correctness and migration assurance. This project adds **constrained stack economics and capacity planning**: determining which integration configuration meets business requirements at the lowest modeled cost. It complements those implementations rather than duplicating another control plane, campaign agent, audience engine or migration tool. [Architecture decision and comparison](docs/decision.md).
+This engine solves a specific enterprise planning problem: **select the lowest-cost feasible integration configuration** under modeled API quotas, demand, freshness, capacity and capability constraints. It supports architecture decisions; it does not replace the control plane responsible for source authority, execution governance or downstream reconciliation. [Model architecture and decisions](docs/architecture.md).
 
 ```mermaid
 flowchart LR
