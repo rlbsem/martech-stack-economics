@@ -1,6 +1,8 @@
-# Decision before implementation
+# Architecture decision — integration cost and capacity
 
-The public portfolio inspection on 2026-09-17 identified four general-purpose architecture projects. A separate game-telemetry project was excluded from this MarTech portfolio comparison. Fresh commit IDs and observed current-commit workflow status are retained in the [inspection record](portfolio-inspection.json), alongside the [read-only profile snapshot](inspected-profile.md); existing suites were inspected, not rerun. Some existing README CI disclaimers lag the successful current-commit workflow statuses observed in this inspection.
+This planning engine answers a bounded technical question: **Which integration routes satisfy declared demand, freshness, shared API budgets, regional restrictions and required capabilities at the lowest modeled cost?**
+
+The historical [public repository inspection](portfolio-inspection.json) records source commits and workflow observations made during design. It is point-in-time engineering provenance, not an assertion about current repository status or the internal architecture of any prospective employer. The current [GitHub profile](https://github.com/rlbsem) is maintained separately.
 
 ## Capability gap
 
