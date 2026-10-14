@@ -1,5 +1,7 @@
 # MarTech Stack Economics
 
+[![Windows + Linux CI](https://github.com/rlbsem/martech-stack-economics/actions/workflows/verify.yml/badge.svg)](https://github.com/rlbsem/martech-stack-economics/actions/workflows/verify.yml)
+
 **Can we reduce integration cost without making launch-day workflows late, losing required data, or exhausting a shared API quota?**
 
 This executable planner selects a cost-minimal integration configuration for a finite set of business workflows. It accounts for shared platform fees, partially filled batches, hourly bursts, total quotas, required data capabilities, permitted processing regions and declared freshness bounds. One configuration must work across every supplied scenario.
