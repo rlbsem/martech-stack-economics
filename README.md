@@ -92,6 +92,6 @@ Python makes the input and accounting readable. SciPy's HiGHS-backed mixed-integ
 
 This is an independent, synthetic **offline planning system**. Route capability and latency declarations are inputs, not executed vendor integrations or measured service guarantees. Capacity is modeled per hour and per horizon; within-hour queues, network timing, live scheduling, probabilistic demand and unmodeled outages are outside the proof. No campaign is sent and no procurement action is taken.
 
-The executed environment is local Windows with Python, NumPy and SciPy. No GitHub Actions workflow is present in the current public repository, so no hosted CI result is claimed. Local verification executes the solver, independent accountant, exhaustive oracle and failure tests.
+The original executed verification used local Windows, Python, NumPy and SciPy. The repository now includes [GitHub Actions verification](https://github.com/rlbsem/martech-stack-economics/actions/workflows/verify.yml) for both Windows and Linux, running the same solver, independent accountant, exhaustive oracle, failure tests and CLI checks. Consult the workflow's actual run status rather than treating its presence as a passing result.
 
 [Actual validation and limitations](docs/validation.md) · [Generated test/environment record](docs/evidence/verification.json) · [Presentation and handoff](docs/handoff.md)
