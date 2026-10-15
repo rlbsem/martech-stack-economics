@@ -29,7 +29,8 @@ The example's optimum is **$7.82** versus **$13.40** for its feasible all-premiu
 This engine solves a specific enterprise planning problem: **select the lowest-cost feasible integration configuration** under modeled API quotas, demand, freshness, capacity and capability constraints. It supports architecture decisions; it does not replace the control plane responsible for source authority, execution governance or downstream reconciliation. [Model architecture and decisions](docs/architecture.md).
 
 ```mermaid
-flowchart LR
+%%{init: {"theme":"base","themeVariables":{"background":"#10101D","primaryColor":"#2A2A3D","primaryTextColor":"#F0F0FF","primaryBorderColor":"#7C7CAF","lineColor":"#B8B8FF","textColor":"#F0F0FF","secondaryColor":"#181825","tertiaryColor":"#2E2E45","fontFamily":"IBM Plex Sans, Arial, sans-serif","fontSize":"15px","edgeLabelBackground":"#10101D"}}}%%
+flowchart TB
     W[Workloads and business requirements] --> C[Closed input contract]
     S[Demand scenarios and shared quotas] --> C
     P[Synthetic route costs and service envelopes] --> C
@@ -41,11 +42,11 @@ flowchart LR
     E[Exhaustive small-case oracle] --> V[Compare feasibility and optimum]
     O --> V
 
-    classDef source fill:#dbeafe,stroke:#2563eb,color:#0f172a,stroke-width:2px;
-    classDef foundation fill:#bfdbfe,stroke:#1d4ed8,color:#0f172a,stroke-width:2px;
-    classDef capability fill:#93c5fd,stroke:#1e40af,color:#0f172a,stroke-width:2px;
-    classDef output fill:#60a5fa,stroke:#1e3a8a,color:#ffffff,stroke-width:2px;
-    classDef alert fill:#1e40af,stroke:#1e3a8a,color:#ffffff,stroke-width:2px;
+    classDef source fill:#181825,stroke:#7C7CAF,color:#F0F0FF,stroke-width:2px;
+    classDef foundation fill:#2A2A3D,stroke:#B8B8FF,color:#F0F0FF,stroke-width:2px;
+    classDef capability fill:#2A2A3D,stroke:#7C7CAF,color:#F0F0FF,stroke-width:2px;
+    classDef output fill:#2E2E45,stroke:#81C5B0,color:#F0F0FF,stroke-width:2px;
+    classDef alert fill:#2E2E45,stroke:#E3BC7F,color:#F0F0FF,stroke-width:2px;
 
     class W,S,P,E source;
     class C foundation;
