@@ -30,7 +30,7 @@ This engine solves a specific enterprise planning problem: **select the lowest-c
 
 ```mermaid
 %%{init: {"theme":"base","themeVariables":{"background":"#10101D","primaryColor":"#2A2A3D","primaryTextColor":"#F0F0FF","primaryBorderColor":"#7C7CAF","lineColor":"#B8B8FF","textColor":"#F0F0FF","secondaryColor":"#181825","tertiaryColor":"#2E2E45","fontFamily":"IBM Plex Sans, Arial, sans-serif","fontSize":"15px","edgeLabelBackground":"#10101D"}}}%%
-flowchart LR
+flowchart TB
     W[Workloads and business requirements] --> C[Closed input contract]
     S[Demand scenarios and shared quotas] --> C
     P[Synthetic route costs and service envelopes] --> C
