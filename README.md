@@ -22,7 +22,7 @@ The business value is a defensible architecture decision: which workflows should
 | Can the budget be one cent below the optimum? | No feasible plan; a named constraint conflict is retained |
 | Does shrinking capacity merely slow the same architecture? | The optimal configuration changes; at 30 CRM requests/hour, none is feasible |
 
-The example's optimum is **$7.82** versus **$13.40** for its feasible all-premium reference over a four-hour horizon. This is arithmetic on deliberately synthetic prices and demand—not a vendor benchmark, forecast or realized saving. The precise figures matter as reproducible checks, not as a commercial ROI claim.
+The example's optimum is **$7.82** versus **$13.40** for its feasible all-premium reference over a four-hour horizon. This is arithmetic on deliberately synthetic prices and demand, not a vendor benchmark, forecast or realized saving. The precise figures matter as reproducible checks, not as a commercial ROI claim.
 
 ## Architecture decision boundary
 
