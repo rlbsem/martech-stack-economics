@@ -91,10 +91,10 @@ stack-economics check fixtures/campaign-launch.json --plan work/plan.json --outp
 
 Python makes the input and accounting readable. SciPy's HiGHS-backed mixed-integer solver handles the coupled discrete choices; it is appropriate where sorting routes by price fails because shared fees and quotas interact. [Architecture and mathematical contract](docs/architecture.md).
 
-## Honest boundary
+## Architecture scope and operating assumptions
 
 This is an independent, synthetic **offline planning system**. Route capability and latency declarations are inputs, not executed vendor integrations or measured service guarantees. Capacity is modeled per hour and per horizon; within-hour queues, network timing, live scheduling, probabilistic demand and unmodeled outages are outside the proof. No campaign is sent and no procurement action is taken.
 
-The original executed verification used local Windows, Python, NumPy and SciPy. The repository now includes [GitHub Actions verification](https://github.com/rlbsem/martech-stack-economics/actions/workflows/verify.yml) for both Windows and Linux, running the same solver, independent accountant, exhaustive oracle, failure tests and CLI checks. Consult the workflow's actual run status rather than treating its presence as a passing result.
+The original executed verification used local Windows, Python, NumPy and SciPy. [GitHub Actions verification passed on Ubuntu and Windows](https://github.com/rlbsem/martech-stack-economics/actions/runs/38501653389), exercising the solver, independent accountant, exhaustive oracle, failure tests and CLI checks. Those CI results verify the synthetic planning workflow, not external vendor performance.
 
-[Actual validation and limitations](docs/validation.md) · [Generated test/environment record](docs/evidence/verification.json) · [Presentation and handoff](docs/handoff.md)
+[Actual validation and limitations](docs/validation.md) · [Generated test/environment record](docs/evidence/verification.json) · [Technical verification record](docs/handoff.md)
