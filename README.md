@@ -6,7 +6,7 @@
 
 This executable planner selects a cost-minimal integration configuration for a finite set of business workflows. It accounts for shared platform fees, partially filled batches, hourly bursts, total quotas, required data capabilities, permitted processing regions and declared freshness bounds. One configuration must work across every supplied scenario.
 
-The business value is a defensible architecture decision: which workflows should share an integration platform, which need faster routes, and when a proposed saving is infeasible. The output includes the arithmetic and rejected alternatives a platform architect can discuss with Marketing, Web, Product Marketing and integration owners.
+**Business impact:** Lower integration costs while protecting critical launch deadlines, data freshness and API capacity. The planner makes decisions defensible: which workflows can share a platform, which require faster routes, and when a proposed saving would compromise execution. The output includes the arithmetic and rejected alternatives a platform architect can discuss with Marketing, Web, Product Marketing and integration owners.
 
 ![Executed stack optimization: selected configuration, independent optimum check and capacity tradeoffs](docs/images/optimization-result.svg)
 
@@ -22,7 +22,7 @@ The business value is a defensible architecture decision: which workflows should
 | Can the budget be one cent below the optimum? | No feasible plan; a named constraint conflict is retained |
 | Does shrinking capacity merely slow the same architecture? | The optimal configuration changes; at 30 CRM requests/hour, none is feasible |
 
-The example's optimum is **$7.82** versus **$13.40** for its feasible all-premium reference over a four-hour horizon. This is arithmetic on deliberately synthetic prices and demand, not a vendor benchmark, forecast or realized saving. The precise figures matter as reproducible checks, not as a commercial ROI claim.
+**Verified synthetic result:** The optimal configuration costs **$7.82 versus $13.40** for the feasible all-premium reference over four hours, while satisfying modeled demand, data freshness and API capacity. Independent enumeration makes the engineering and cost tradeoff reproducible.
 
 ## Architecture decision boundary
 
