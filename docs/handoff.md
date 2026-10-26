@@ -1,4 +1,4 @@
-# MarTech Stack Economics — technical verification and release
+# MarTech Stack Economics: technical verification and release
 
 An offline integration-cost and capacity planner with a closed planning contract, mixed-integer solver, independent integer accountant, generated evidence and automated verification.
 
