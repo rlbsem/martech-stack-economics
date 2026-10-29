@@ -10,6 +10,8 @@ Route `resources` specifies requests consumed on each named shared quota per emi
 
 Freshness is a declared upper latency envelope for a route operating within the supplied capacity budget. It must be no worse than the workload requirement. The code does not infer that envelope from hourly capacity. Real deployment decisions need measured profiles and vendor semantics; without them, mathematical feasibility is only conditional feasibility.
 
+The sections here describe the preserved mathematical layer. The additive [execution assurance architecture](execution-assurance.md) provides finite local HTTP scheduling, durable intents, independent receiver observations and explicit architecture revisions; it does not change these mathematical semantics.
+
 ## Variables and constraints
 
 For workflow w and route o, binary `x[w,o]` indicates selection. Binary `y[p]` indicates a platform is enabled. Integer z bounds worst-scenario cost. For supplied demand `d[s,w,t]` and route batch size b:

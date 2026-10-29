@@ -1,0 +1,11 @@
+.venv/
+.local/
+.local-install.log
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+work/

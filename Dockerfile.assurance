@@ -1,0 +1,16 @@
+FROM python:3.12-slim
+ARG SOURCE_COMMIT
+ENV STACK_ECONOMICS_SOURCE_COMMIT=$SOURCE_COMMIT
+WORKDIR /app
+COPY requirements.lock requirements-browser.lock pyproject.toml LICENSE ./
+RUN pip install --no-cache-dir -r requirements.lock
+COPY src/ src/
+COPY tests/ tests/
+COPY scripts/ scripts/
+COPY fixtures/ fixtures/
+COPY .github/ .github/
+COPY Dockerfile.assurance ./
+RUN pip install --no-deps --no-build-isolation .
+USER 10001:10001
+# The acceptance process needs only loopback; the CI invocation disables external networking.
+CMD ["python", "scripts/verify_assurance.py", "--output", "/evidence/acceptance"]

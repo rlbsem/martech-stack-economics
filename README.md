@@ -6,6 +6,8 @@
 
 This executable planner selects a cost-minimal integration configuration for a finite set of business workflows. It accounts for shared platform fees, partially filled batches, hourly bursts, total quotas, required data capabilities, permitted processing regions and declared freshness bounds. One configuration must work across every supplied scenario.
 
+The additive **plan-to-execution assurance** layer runs those selected routes through independently observable local HTTP services. It compares the model with actual requests, durable receipts, record readback, queueing and freshness, then accepts the finite trial or requires an explicit architecture revision. Synthetic prices are never represented as real vendor expenditure.
+
 **Business impact:** Lower integration costs while protecting critical launch deadlines, data freshness and API capacity. The planner makes decisions defensible: which workflows can share a platform, which require faster routes, and when a proposed saving would compromise execution. The output includes the arithmetic and rejected alternatives a platform architect can discuss with Marketing, Web, Product Marketing and integration owners.
 
 ![Executed stack optimization: selected configuration, independent optimum check and capacity tradeoffs](docs/images/optimization-result.svg)
@@ -25,6 +27,29 @@ This executable planner selects a cost-minimal integration configuration for a f
 **Verified synthetic result:** The optimal configuration costs **$7.82 versus $13.40** for the feasible all-premium reference over four hours, while satisfying modeled demand, data freshness and API capacity. Independent enumeration makes the engineering and cost tradeoff reproducible.
 
 ## Architecture decision boundary
+
+### Inspect execution assurance
+
+- [Execution results, failures and source provenance](docs/evidence/execution/README.md)
+- [HTTP contracts, independent reconciliation and decision governance](docs/execution-assurance.md)
+- [Actual normal-demand console screenshot](docs/evidence/execution/browser/normal-desktop.png)
+
+The console is a real, read-only local application. It reads persisted evidence, exposes rejected outcomes and downloads the independent receiver observations. It needs no credentials or external service.
+
+```bash
+# Inspect the committed, recorded execution evidence after installing the package.
+python -m stack_economics.assurance.console --evidence docs/evidence/execution/acceptance/execution
+# Open http://127.0.0.1:8578/
+
+# Reproduce all tests and the finite execution suite into a NEW directory.
+python scripts/verify_assurance.py --output .local/acceptance-01
+python scripts/check_execution.py --evidence .local/acceptance-01/execution
+python scripts/package_integrity.py
+```
+
+The default experiment uses **36 real seconds per 60 modeled minutes**. Freshness deadlines use the same declared scaling. This is accelerated local contract acceptance, not a vendor benchmark, real four-hour campaign, residency certification or production capacity promise. No region, capability, deletion or freshness requirement is relaxed to make a cheaper plan pass.
+
+### Preserved mathematical core
 
 This engine solves a specific enterprise planning problem: **select the lowest-cost feasible integration configuration** under modeled API quotas, demand, freshness, capacity and capability constraints. It supports architecture decisions; it does not replace the control plane responsible for source authority, execution governance or downstream reconciliation. [Model architecture and decisions](docs/architecture.md).
 
@@ -66,7 +91,7 @@ python -m venv .venv
 # Activate .venv for your shell.
 python -m pip install -r requirements.lock
 python -m pip install --no-deps --no-build-isolation -e .
-python scripts/verify.py
+python scripts/verify.py --output .local/math-verification-01
 ```
 
 Verification runs lint, dependency checks, automated tests, independent optimum comparisons and the asserted demonstration, then regenerates source-bound evidence. No API key, model download, cloud account, database or Docker engine is needed.

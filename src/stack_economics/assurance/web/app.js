@@ -1,0 +1,32 @@
+'use strict';
+const $ = id => document.getElementById(id);
+const money = cents => new Intl.NumberFormat('en-US', {style:'currency',currency:'USD'}).format(cents/100);
+const labels = {'normal':'Normal demand','launch-surge':'Campaign launch surge','transient-recovery':'429 / 503 / lost acknowledgement','delayed-source':'Delayed source / expired freshness','slow-destination':'Slow destination','shared-quota-pressure':'Shared quota pressure','revoked-permission':'Revoked fixture permission','capacity-revision':'Explicit capacity revision','capacity-blocked':'No feasible architecture'};
+const table = (id, records) => { $(id).replaceChildren(...records.map(values => {const row=document.createElement('tr'); values.forEach(value=>{const cell=document.createElement('td');cell.textContent=value;row.append(cell);});return row;})); };
+let data;
+function render() {
+  const trial = data.trials.find(t=>t.name===$('trial').value);
+  const decision=data.decisions.find(d=>d.id===trial.decision);
+  const document=JSON.parse(decision.document);
+  const result=trial.result;
+  $('content').hidden=false;
+  $('outcome').textContent=trial.blocked?'Blocked · no execution':result.acceptable?'Acceptable under this finite trial':'Revision required';
+  $('predicted').textContent=trial.blocked?'—':money(result.predicted_cost_cents);
+  $('actual').textContent=trial.blocked?'Not executed':money(result.actual_synthetic_cost_cents);
+  $('coverage').textContent=trial.blocked?'—':`${(100*result.on_time_records/result.source_records).toFixed(1)}%`;
+  $('records').textContent=trial.blocked?'No HTTP workload launched':`${result.on_time_records.toLocaleString()} / ${result.source_records.toLocaleString()} synthetic records`;
+  $('queue').textContent=trial.blocked?'—':result.peak_queued_batches;
+  $('version').textContent=`Decision ${trial.decision.slice(0,12)}`;
+  $('states').replaceChildren(...data.transitions.filter(t=>t.decision===trial.decision).map(t=>{const li=window.document.createElement('li');li.textContent=t.state.replaceAll('_',' ');return li;}));
+  $('decision-note').textContent=trial.blocked?'The unchanged hard requirements have no feasible selection at the revised capacity. Execution is blocked.':trial.parent?'A new immutable decision uses the explicitly reduced observed capacity. Earlier failed evidence remains intact.':'The selected architecture is evaluated against independently persisted receiver records, not the executor’s success counter.';
+  $('timing').textContent=trial.blocked?'No alternative relaxes region, deletion, field, permission or freshness requirements.':result.timing_boundary;
+  $('violations').replaceChildren(...(result?.violations||[]).map(v=>{const li=window.document.createElement('li');li.textContent=v.replaceAll('_',' ');return li;}));
+  table('routes',document.spec.workloads.map(w=>[`${w.id} / ${w.owner}`,document.plan.selection?.[w.id]||'No feasible route',`${w.max_lag_minutes} modeled min`]));
+  table('capacity',(result?.capacity||[]).map(c=>[c.resource,c.predicted_requests,c.actual_arrivals,c.admitted]));
+  table('workflows',Object.entries(result?.workflows||{}).map(([name,w])=>[name,w.source_records,w.committed_records,w.on_time_records]));
+  $('download').hidden=Boolean(trial.blocked);$('download').href='/evidence/'+encodeURIComponent(trial.name);
+  $('raw-result').textContent=JSON.stringify(result||document.plan,null,2);
+  $('provenance').textContent=JSON.stringify({source_commit:data.source_commit,boundary:data.boundary,decision:trial.decision,parent:trial.parent,evidence_hash:trial.evidence_hash,result_hash:trial.result_hash},null,2);
+  $('assumptions').textContent=JSON.stringify({solver:document.plan.solver,profile:document.profile,requirements:document.spec.workloads.map(w=>({workflow:w.id,required_capabilities:w.required_capabilities,allowed_regions:w.allowed_regions,max_lag_minutes:w.max_lag_minutes,alternatives:w.options}))},null,2);
+}
+fetch('/api/summary').then(response=>{if(!response.ok)throw Error('Evidence unavailable');return response.json();}).then(value=>{data=value;data.trials.forEach(t=>{const option=document.createElement('option');option.value=t.name;option.textContent=labels[t.name]||t.name;$('trial').append(option);});$('trial').addEventListener('change',render);render();}).catch(error=>{$('error').textContent='Unable to load verified evidence: '+error.message;});

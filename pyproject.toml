@@ -12,6 +12,9 @@ dependencies = ["numpy==2.3.3", "scipy==1.16.2"]
 [project.scripts]
 stack-economics = "stack_economics.cli:main"
 
+[tool.setuptools.package-data]
+"stack_economics.assurance" = ["web/*.html", "web/*.css", "web/*.js"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"

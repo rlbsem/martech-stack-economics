@@ -23,6 +23,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - name: Set up Python 3.12
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
@@ -31,12 +32,65 @@ jobs:
         run: python -m pip install -r requirements.lock
       - name: Install package from source
         run: python -m pip install --no-deps --no-build-isolation .
-      - name: Verify solver, independent accountant and CLI
-        run: python scripts/verify.py
+      - name: Check immutable baseline and public package
+        run: python scripts/package_integrity.py
+      - name: Verify solver, real HTTP execution and independent reconciliation
+        run: python scripts/verify_assurance.py --output .local/acceptance
+      - name: Install isolated browser verification tools
+        if: runner.os == 'Linux'
+        run: |
+          python -m pip install -r requirements-browser.lock
+          python -m playwright install --with-deps chromium
+          python scripts/fetch_browser_tools.py
+      - name: Verify actual desktop and mobile console
+        if: runner.os == 'Linux'
+        run: python scripts/browser_acceptance.py --evidence .local/acceptance/execution --output .local/browser
       - name: Retain test and planning evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: stack-economics-evidence-${{ matrix.os }}
-          path: docs/evidence/
+          path: |
+            .local/acceptance/**/*.json
+            .local/acceptance/**/*.json.gz
+            .local/acceptance/**/*.xml
+            .local/acceptance/**/*.md
+            .local/browser/
+          include-hidden-files: true
+          if-no-files-found: warn
+  container:
+    name: Isolated Linux container / actual HTTP
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Build acceptance image
+        env:
+          SOURCE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          docker build --build-arg SOURCE_COMMIT="$SOURCE_COMMIT" -f Dockerfile.assurance -t economics-assurance .
+          mkdir -p .local/container
+          chmod 777 .local/container
+          docker image inspect economics-assurance > .local/container/image-inspect.json
+      - name: Run without external network, root privileges or writable image
+        run: |
+          docker run --rm --read-only --network none --cpus 2 --memory 3g --pids-limit 128 \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --tmpfs /tmp:rw,noexec,nosuid,size=128m \
+            --tmpfs /app/work:rw,nosuid,size=256m,uid=10001,gid=10001 \
+            --mount type=bind,src="$PWD/.local/container",dst=/evidence economics-assurance
+      - name: Retain independently reconciled container evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stack-economics-container
+          path: |
+            .local/container/**/*.json
+            .local/container/**/*.json.gz
+            .local/container/**/*.xml
+            .local/container/**/*.md
+          include-hidden-files: true
           if-no-files-found: warn
