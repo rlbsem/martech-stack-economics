@@ -68,6 +68,10 @@ def test_real_http_arithmetic_partial_batches_and_mutated_evidence(tmp_path, sma
     changed = copy.deepcopy(observed)
     changed['receivers']['crm-api']['requests'].pop()
     mutations.append((changed, 'client_receiver_request_disagreement'))
+    changed = copy.deepcopy(observed)
+    for field in ('created_ns', 'ready_ns', 'deadline_ns'):
+        changed['control']['batches'][0][field] += 10_000_000_000
+    mutations.append((changed, 'post_before_source_ready'))
     for changed, reason in mutations:
         assert reason in reconcile(changed)['violations']
 
@@ -146,7 +150,7 @@ def test_expired_sources_and_revoked_permission_do_not_create_effects(tmp_path, 
 def test_admission_capacity_is_not_an_arrival_rate_guarantee(tmp_path, small):
     ledger = tmp_path / 'ledger.sqlite'
     initialize(ledger)
-    runtime = profile(window_seconds=1, capacity_override={'crm-api': 2})
+    runtime = profile(window_seconds=3, capacity_override={'crm-api': 2})
     result = trial(tmp_path / 'quota', small, solve(small), small['scenarios'][0]['id'], runtime, 'quota', ledger)
     checked = result['result']
     crm = next(c for c in checked['capacity'] if c['resource'] == 'crm-api')

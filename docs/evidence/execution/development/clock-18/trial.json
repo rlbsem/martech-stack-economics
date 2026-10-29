@@ -1,0 +1,174 @@
+{
+  "name": "surge",
+  "decision": "a102173e29d34fab363487e3b6c71c5f921633c49e866b449923b060b9270383",
+  "parent": null,
+  "scenario": "launch-surge",
+  "evidence_hash": "8bbe2658d798a2449bf848ea0761297fbf6168077f2d808181e0886bd955a202",
+  "result_hash": "97f8868feb00818fdbf3770daaf9e9224bc77e23340d51214f172116e17c516c",
+  "result": {
+    "acceptable": false,
+    "violations": [
+      "incomplete_on_time_coverage",
+      "post_arrived_after_deadline",
+      "unresolved_records"
+    ],
+    "observations": [
+      "synthetic_cost_variance"
+    ],
+    "source_records": 56700,
+    "on_time_records": 37450,
+    "late_records": 0,
+    "unresolved_records": 19250,
+    "retained_destination_records": 34035,
+    "predicted_cost_cents": 782,
+    "actual_synthetic_cost_cents": 628,
+    "cost_variance_cents": -154,
+    "effective_cents_per_on_time_record": 0.016769025367156208,
+    "predicted_requests": {
+      "crm-api": 156,
+      "destination-api": 156,
+      "bulk-jobs": 28
+    },
+    "actual_requests": {
+      "bulk-jobs": 28,
+      "crm-api": 86,
+      "destination-api": 79
+    },
+    "capacity": [
+      {
+        "resource": "bulk-jobs",
+        "predicted_requests": 28,
+        "actual_arrivals": 28,
+        "admitted": 28,
+        "max_arrivals_per_window": 16,
+        "arrival_windows_over_capacity": 0,
+        "per_window_limit": 20,
+        "horizon_limit": 60,
+        "windows": [
+          {
+            "slot": 0,
+            "arrivals": 2,
+            "admitted": 2
+          },
+          {
+            "slot": 1,
+            "arrivals": 8,
+            "admitted": 8
+          },
+          {
+            "slot": 2,
+            "arrivals": 16,
+            "admitted": 16
+          },
+          {
+            "slot": 3,
+            "arrivals": 2,
+            "admitted": 2
+          }
+        ]
+      },
+      {
+        "resource": "crm-api",
+        "predicted_requests": 156,
+        "actual_arrivals": 86,
+        "admitted": 86,
+        "max_arrivals_per_window": 41,
+        "arrival_windows_over_capacity": 0,
+        "per_window_limit": 100,
+        "horizon_limit": 250,
+        "windows": [
+          {
+            "slot": 0,
+            "arrivals": 5,
+            "admitted": 5
+          },
+          {
+            "slot": 1,
+            "arrivals": 41,
+            "admitted": 41
+          },
+          {
+            "slot": 2,
+            "arrivals": 33,
+            "admitted": 33
+          },
+          {
+            "slot": 3,
+            "arrivals": 7,
+            "admitted": 7
+          }
+        ]
+      },
+      {
+        "resource": "destination-api",
+        "predicted_requests": 156,
+        "actual_arrivals": 79,
+        "admitted": 79,
+        "max_arrivals_per_window": 37,
+        "arrival_windows_over_capacity": 0,
+        "per_window_limit": 180,
+        "horizon_limit": 450,
+        "windows": [
+          {
+            "slot": 0,
+            "arrivals": 5,
+            "admitted": 5
+          },
+          {
+            "slot": 1,
+            "arrivals": 37,
+            "admitted": 37
+          },
+          {
+            "slot": 2,
+            "arrivals": 30,
+            "admitted": 30
+          },
+          {
+            "slot": 3,
+            "arrivals": 7,
+            "admitted": 7
+          }
+        ]
+      }
+    ],
+    "failures": {
+      "bulk-jobs": {},
+      "crm-api": {},
+      "destination-api": {}
+    },
+    "workflows": {
+      "lead-handoff": {
+        "source_records": 6300,
+        "committed_records": 2550,
+        "on_time_records": 2550
+      },
+      "campaign-suppression": {
+        "source_records": 12600,
+        "committed_records": 3850,
+        "on_time_records": 3850
+      },
+      "attribution-refresh": {
+        "source_records": 18900,
+        "committed_records": 18900,
+        "on_time_records": 18900
+      },
+      "web-personalization": {
+        "source_records": 12600,
+        "committed_records": 5850,
+        "on_time_records": 5850
+      },
+      "product-enrichment": {
+        "source_records": 6300,
+        "committed_records": 6300,
+        "on_time_records": 6300
+      }
+    },
+    "max_freshness_seconds": 4.6480325,
+    "max_source_to_request_seconds": 4.6450332,
+    "peak_queued_batches": 96,
+    "timing_boundary": "Accelerated local clock: 18.0 real seconds per 60 modeled minutes; not a production throughput/SLO claim",
+    "cost_boundary": "Synthetic fixed platform fees + destination POST attempts at route price + one synthetic cent for every receipt GET; no real vendor spend"
+  },
+  "seconds": 60.27
+}

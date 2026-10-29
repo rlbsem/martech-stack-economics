@@ -1,0 +1,444 @@
+{
+  "schema": 1,
+  "source_commit": "c5944464c8711ee2c8bb510226c25b5f8dbb56ac",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "boundary": "Actual independent local HTTP processes and SQLite; synthetic data/prices, accelerated clock, no native vendor execution",
+  "trials": [
+    {
+      "name": "normal",
+      "decision": "cd674432e1ab80b8a475678dc3d973ce78da3f554c741956098e3e57150c2983",
+      "parent": null,
+      "scenario": "normal",
+      "evidence_hash": "0de82586bf5f6b89eed49b02861b75ae46653d38accc6739c715d7eda4d81f69",
+      "result_hash": "e01398475eda965b81ca9fbbcd1959ad7635ae1683d37e3c2ded4ceb4c4eb337",
+      "result": {
+        "acceptable": true,
+        "violations": [],
+        "observations": [],
+        "source_records": 5400,
+        "on_time_records": 5400,
+        "late_records": 0,
+        "unresolved_records": 0,
+        "retained_destination_records": 4894,
+        "predicted_cost_cents": 518,
+        "actual_synthetic_cost_cents": 518,
+        "cost_variance_cents": 0,
+        "effective_cents_per_on_time_record": 0.09592592592592593,
+        "predicted_requests": {
+          "crm-api": 24,
+          "destination-api": 24,
+          "bulk-jobs": 8
+        },
+        "actual_requests": {
+          "crm-api": 24,
+          "destination-api": 24,
+          "bulk-jobs": 8
+        },
+        "capacity": [
+          {
+            "resource": "crm-api",
+            "predicted_requests": 24,
+            "actual_arrivals": 24,
+            "admitted": 24,
+            "max_arrivals_per_window": 7,
+            "arrival_windows_over_capacity": 0,
+            "per_window_limit": 100,
+            "horizon_limit": 250,
+            "windows": [
+              {
+                "slot": 0,
+                "arrivals": 5,
+                "admitted": 5
+              },
+              {
+                "slot": 1,
+                "arrivals": 7,
+                "admitted": 7
+              },
+              {
+                "slot": 2,
+                "arrivals": 7,
+                "admitted": 7
+              },
+              {
+                "slot": 3,
+                "arrivals": 5,
+                "admitted": 5
+              }
+            ]
+          },
+          {
+            "resource": "destination-api",
+            "predicted_requests": 24,
+            "actual_arrivals": 24,
+            "admitted": 24,
+            "max_arrivals_per_window": 7,
+            "arrival_windows_over_capacity": 0,
+            "per_window_limit": 180,
+            "horizon_limit": 450,
+            "windows": [
+              {
+                "slot": 0,
+                "arrivals": 5,
+                "admitted": 5
+              },
+              {
+                "slot": 1,
+                "arrivals": 7,
+                "admitted": 7
+              },
+              {
+                "slot": 2,
+                "arrivals": 7,
+                "admitted": 7
+              },
+              {
+                "slot": 3,
+                "arrivals": 5,
+                "admitted": 5
+              }
+            ]
+          },
+          {
+            "resource": "bulk-jobs",
+            "predicted_requests": 8,
+            "actual_arrivals": 8,
+            "admitted": 8,
+            "max_arrivals_per_window": 2,
+            "arrival_windows_over_capacity": 0,
+            "per_window_limit": 20,
+            "horizon_limit": 60,
+            "windows": [
+              {
+                "slot": 0,
+                "arrivals": 2,
+                "admitted": 2
+              },
+              {
+                "slot": 1,
+                "arrivals": 2,
+                "admitted": 2
+              },
+              {
+                "slot": 2,
+                "arrivals": 2,
+                "admitted": 2
+              },
+              {
+                "slot": 3,
+                "arrivals": 2,
+                "admitted": 2
+              }
+            ]
+          }
+        ],
+        "failures": {
+          "crm-api": {},
+          "destination-api": {},
+          "bulk-jobs": {}
+        },
+        "workflows": {
+          "lead-handoff": {
+            "source_records": 600,
+            "committed_records": 600,
+            "on_time_records": 600
+          },
+          "campaign-suppression": {
+            "source_records": 1200,
+            "committed_records": 1200,
+            "on_time_records": 1200
+          },
+          "attribution-refresh": {
+            "source_records": 1800,
+            "committed_records": 1800,
+            "on_time_records": 1800
+          },
+          "web-personalization": {
+            "source_records": 1200,
+            "committed_records": 1200,
+            "on_time_records": 1200
+          },
+          "product-enrichment": {
+            "source_records": 600,
+            "committed_records": 600,
+            "on_time_records": 600
+          }
+        },
+        "max_freshness_seconds": 0.7662017,
+        "max_source_to_request_seconds": 0.7633357,
+        "peak_queued_batches": 7,
+        "timing_boundary": "Accelerated local clock: 6.0 real seconds per 60 modeled minutes; not a production throughput/SLO claim",
+        "cost_boundary": "Synthetic fixed platform fees + destination POST attempts at route price + one synthetic cent for every receipt GET; no real vendor spend"
+      },
+      "seconds": 22.612
+    },
+    {
+      "name": "launch-surge",
+      "decision": "6a552b55e63509683c7e369f3ccc935b67e569857ec51d24d33bab71dcc93c33",
+      "parent": null,
+      "scenario": "launch-surge",
+      "evidence_hash": "7f5bd030f123251231166dd9eb89250cc96f81640d1efb7dc66eac8b9ccbbfed",
+      "result_hash": "a9e74d3a4726716ac39583525c07cc4d04f2f13097067b49efbdee769318c41f",
+      "result": {
+        "acceptable": false,
+        "violations": [
+          "incomplete_on_time_coverage",
+          "unresolved_records"
+        ],
+        "observations": [
+          "synthetic_cost_variance"
+        ],
+        "source_records": 56700,
+        "on_time_records": 27200,
+        "late_records": 0,
+        "unresolved_records": 29500,
+        "retained_destination_records": 24718,
+        "predicted_cost_cents": 782,
+        "actual_synthetic_cost_cents": 546,
+        "cost_variance_cents": -236,
+        "effective_cents_per_on_time_record": 0.020073529411764705,
+        "predicted_requests": {
+          "crm-api": 156,
+          "destination-api": 156,
+          "bulk-jobs": 28
+        },
+        "actual_requests": {
+          "crm-api": 40,
+          "destination-api": 38,
+          "bulk-jobs": 28
+        },
+        "capacity": [
+          {
+            "resource": "crm-api",
+            "predicted_requests": 156,
+            "actual_arrivals": 40,
+            "admitted": 40,
+            "max_arrivals_per_window": 16,
+            "arrival_windows_over_capacity": 0,
+            "per_window_limit": 100,
+            "horizon_limit": 250,
+            "windows": [
+              {
+                "slot": 0,
+                "arrivals": 5,
+                "admitted": 5
+              },
+              {
+                "slot": 1,
+                "arrivals": 12,
+                "admitted": 12
+              },
+              {
+                "slot": 2,
+                "arrivals": 16,
+                "admitted": 16
+              },
+              {
+                "slot": 3,
+                "arrivals": 7,
+                "admitted": 7
+              }
+            ]
+          },
+          {
+            "resource": "destination-api",
+            "predicted_requests": 156,
+            "actual_arrivals": 38,
+            "admitted": 38,
+            "max_arrivals_per_window": 16,
+            "arrival_windows_over_capacity": 0,
+            "per_window_limit": 180,
+            "horizon_limit": 450,
+            "windows": [
+              {
+                "slot": 0,
+                "arrivals": 5,
+                "admitted": 5
+              },
+              {
+                "slot": 1,
+                "arrivals": 10,
+                "admitted": 10
+              },
+              {
+                "slot": 2,
+                "arrivals": 16,
+                "admitted": 16
+              },
+              {
+                "slot": 3,
+                "arrivals": 7,
+                "admitted": 7
+              }
+            ]
+          },
+          {
+            "resource": "bulk-jobs",
+            "predicted_requests": 28,
+            "actual_arrivals": 28,
+            "admitted": 28,
+            "max_arrivals_per_window": 16,
+            "arrival_windows_over_capacity": 0,
+            "per_window_limit": 20,
+            "horizon_limit": 60,
+            "windows": [
+              {
+                "slot": 0,
+                "arrivals": 2,
+                "admitted": 2
+              },
+              {
+                "slot": 1,
+                "arrivals": 8,
+                "admitted": 8
+              },
+              {
+                "slot": 2,
+                "arrivals": 16,
+                "admitted": 16
+              },
+              {
+                "slot": 3,
+                "arrivals": 2,
+                "admitted": 2
+              }
+            ]
+          }
+        ],
+        "failures": {
+          "crm-api": {},
+          "destination-api": {},
+          "bulk-jobs": {}
+        },
+        "workflows": {
+          "lead-handoff": {
+            "source_records": 6300,
+            "committed_records": 300,
+            "on_time_records": 300
+          },
+          "campaign-suppression": {
+            "source_records": 12600,
+            "committed_records": 600,
+            "on_time_records": 600
+          },
+          "attribution-refresh": {
+            "source_records": 18900,
+            "committed_records": 18900,
+            "on_time_records": 18900
+          },
+          "web-personalization": {
+            "source_records": 12600,
+            "committed_records": 1100,
+            "on_time_records": 1100
+          },
+          "product-enrichment": {
+            "source_records": 6300,
+            "committed_records": 6300,
+            "on_time_records": 6300
+          }
+        },
+        "max_freshness_seconds": 3.705081,
+        "max_source_to_request_seconds": 3.7014155,
+        "peak_queued_batches": 96,
+        "timing_boundary": "Accelerated local clock: 6.0 real seconds per 60 modeled minutes; not a production throughput/SLO claim",
+        "cost_boundary": "Synthetic fixed platform fees + destination POST attempts at route price + one synthetic cent for every receipt GET; no real vendor spend"
+      },
+      "seconds": 23.587
+    }
+  ],
+  "decisions": [
+    {
+      "id": "cd674432e1ab80b8a475678dc3d973ce78da3f554c741956098e3e57150c2983",
+      "parent": null,
+      "document": "{\"context\":{\"run\":\"normal\",\"scenario\":\"normal\"},\"parent\":null,\"plan\":{\"assessment\":{\"enabled_platforms\":[\"batch-hub\",\"stream-hub\"],\"feasible\":true,\"fixed_cost_cents\":470,\"scenarios\":[{\"capacity\":[{\"headroom\":95,\"limit\":100,\"resource\":\"crm-api\",\"slot\":0,\"used\":5},{\"headroom\":93,\"limit\":100,\"resource\":\"crm-api\",\"slot\":1,\"used\":7},{\"headroom\":93,\"limit\":100,\"resource\":\"crm-api\",\"slot\":2,\"used\":7},{\"headroom\":95,\"limit\":100,\"resource\":\"crm-api\",\"slot\":3,\"used\":5},{\"headroom\":226,\"limit\":250,\"resource\":\"crm-api\",\"slot\":\"total\",\"used\":24},{\"headroom\":175,\"limit\":180,\"resource\":\"destination-api\",\"slot\":0,\"used\":5},{\"headroom\":173,\"limit\":180,\"resource\":\"destination-api\",\"slot\":1,\"used\":7},{\"headroom\":173,\"limit\":180,\"resource\":\"destination-api\",\"slot\":2,\"used\":7},{\"headroom\":175,\"limit\":180,\"resource\":\"destination-api\",\"slot\":3,\"used\":5},{\"headroom\":426,\"limit\":450,\"resource\":\"destination-api\",\"slot\":\"total\",\"used\":24},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":0,\"used\":2},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":1,\"used\":2},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":2,\"used\":2},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":3,\"used\":2},{\"headroom\":52,\"limit\":60,\"resource\":\"bulk-jobs\",\"slot\":\"total\",\"used\":8}],\"charges\":[{\"batches_by_slot\":[1,1,1,1],\"option\":\"stream\",\"records_by_slot\":[100,200,200,100],\"variable_cost_cents\":8,\"workload\":\"lead-handoff\"},{\"batches_by_slot\":[1,2,2,1],\"option\":\"stream\",\"records_by_slot\":[200,400,400,200],\"variable_cost_cents\":12,\"workload\":\"campaign-suppression\"},{\"batches_by_slot\":[1,1,1,1],\"option\":\"bulk\",\"records_by_slot\":[300,600,600,300],\"variable_cost_cents\":8,\"workload\":\"attribution-refresh\"},{\"batches_by_slot\":[1,2,2,1],\"option\":\"stream\",\"records_by_slot\":[200,400,400,200],\"variable_cost_cents\":12,\"workload\":\"web-personalization\"},{\"batches_by_slot\":[1,1,1,1],\"option\":\"bulk\",\"records_by_slot\":[100,200,200,100],\"variable_cost_cents\":8,\"workload\":\"product-enrichment\"}],\"cost_cents\":518,\"id\":\"normal\"},{\"capacity\":[{\"headroom\":95,\"limit\":100,\"resource\":\"crm-api\",\"slot\":0,\"used\":5},{\"headroom\":52,\"limit\":100,\"resource\":\"crm-api\",\"slot\":1,\"used\":48},{\"headroom\":4,\"limit\":100,\"resource\":\"crm-api\",\"slot\":2,\"used\":96},{\"headroom\":93,\"limit\":100,\"resource\":\"crm-api\",\"slot\":3,\"used\":7},{\"headroom\":94,\"limit\":250,\"resource\":\"crm-api\",\"slot\":\"total\",\"used\":156},{\"headroom\":175,\"limit\":180,\"resource\":\"destination-api\",\"slot\":0,\"used\":5},{\"headroom\":132,\"limit\":180,\"resource\":\"destination-api\",\"slot\":1,\"used\":48},{\"headroom\":84,\"limit\":180,\"resource\":\"destination-api\",\"slot\":2,\"used\":96},{\"headroom\":173,\"limit\":180,\"resource\":\"destination-api\",\"slot\":3,\"used\":7},{\"headroom\":294,\"limit\":450,\"resource\":\"destination-api\",\"slot\":\"total\",\"used\":156},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":0,\"used\":2},{\"headroom\":12,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":1,\"used\":8},{\"headroom\":4,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":2,\"used\":16},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":3,\"used\":2},{\"headroom\":32,\"limit\":60,\"resource\":\"bulk-jobs\",\"slot\":\"total\",\"used\":28}],\"charges\":[{\"batches_by_slot\":[1,8,16,1],\"option\":\"stream\",\"records_by_slot\":[100,2000,4000,200],\"variable_cost_cents\":52,\"workload\":\"lead-handoff\"},{\"batches_by_slot\":[1,16,32,2],\"option\":\"stream\",\"records_by_slot\":[200,4000,8000,400],\"variable_cost_cents\":102,\"workload\":\"campaign-suppression\"},{\"batches_by_slot\":[1,6,12,1],\"option\":\"bulk\",\"records_by_slot\":[300,6000,12000,600],\"variable_cost_cents\":40,\"workload\":\"attribution-refresh\"},{\"batches_by_slot\":[1,16,32,2],\"option\":\"stream\",\"records_by_slot\":[200,4000,8000,400],\"variable_cost_cents\":102,\"workload\":\"web-personalization\"},{\"batches_by_slot\":[1,2,4,1],\"option\":\"bulk\",\"records_by_slot\":[100,2000,4000,200],\"variable_cost_cents\":16,\"workload\":\"product-enrichment\"}],\"cost_cents\":782,\"id\":\"launch-surge\"}],\"violations\":[],\"worst_cost_cents\":782},\"contract\":1,\"implementation_hash\":\"14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42\",\"input_hash\":\"3af3122c31d3b75d5884211f25ebee6a89fc8c7722dd688c871943595361ec36\",\"selection\":{\"attribution-refresh\":\"bulk\",\"campaign-suppression\":\"stream\",\"lead-handoff\":\"stream\",\"product-enrichment\":\"bulk\",\"web-personalization\":\"stream\"},\"solver\":{\"backend\":\"SciPy milp / HiGHS\",\"lower_bound_cents\":782.0,\"message\":\"Optimization terminated successfully. (HiGHS Status 7: Optimal)\",\"numpy\":\"2.3.3\",\"objective_cents\":782,\"relative_gap\":0.0,\"scipy\":\"1.16.2\",\"status\":0,\"time_limit_seconds\":10.0},\"status\":\"optimal\"},\"profile\":{\"ack_delay_seconds\":0.8,\"capacity_override\":{},\"delay_seconds\":0.0003,\"faults\":[],\"max_attempts\":3,\"permission\":true,\"recovery_probe_cents\":1,\"retry_seconds\":0.025,\"source_delay\":{},\"timeout_seconds\":0.35,\"window_seconds\":6.0,\"workers\":8},\"spec\":{\"budget_cents\":2000,\"currency\":\"USD\",\"id\":\"campaign-launch\",\"platforms\":[{\"fixed_cost_cents\":0,\"id\":\"direct\"},{\"fixed_cost_cents\":120,\"id\":\"batch-hub\"},{\"fixed_cost_cents\":350,\"id\":\"stream-hub\"},{\"fixed_cost_cents\":700,\"id\":\"premium-hub\"}],\"resources\":[{\"id\":\"crm-api\",\"unit\":\"requests\"},{\"id\":\"destination-api\",\"unit\":\"requests\"},{\"id\":\"bulk-jobs\",\"unit\":\"requests\"}],\"scenarios\":[{\"capacities\":{\"bulk-jobs\":{\"per_slot\":[20,20,20,20],\"total\":60},\"crm-api\":{\"per_slot\":[100,100,100,100],\"total\":250},\"destination-api\":{\"per_slot\":[180,180,180,180],\"total\":450}},\"demands\":{\"attribution-refresh\":[300,600,600,300],\"campaign-suppression\":[200,400,400,200],\"lead-handoff\":[100,200,200,100],\"product-enrichment\":[100,200,200,100],\"web-personalization\":[200,400,400,200]},\"id\":\"normal\"},{\"capacities\":{\"bulk-jobs\":{\"per_slot\":[20,20,20,20],\"total\":60},\"crm-api\":{\"per_slot\":[100,100,100,100],\"total\":250},\"destination-api\":{\"per_slot\":[180,180,180,180],\"total\":450}},\"demands\":{\"attribution-refresh\":[300,6000,12000,600],\"campaign-suppression\":[200,4000,8000,400],\"lead-handoff\":[100,2000,4000,200],\"product-enrichment\":[100,2000,4000,200],\"web-personalization\":[200,4000,8000,400]},\"id\":\"launch-surge\"}],\"schema\":1,\"slot_minutes\":60,\"slots\":4,\"workloads\":[{\"allowed_regions\":[\"ca\"],\"id\":\"lead-handoff\",\"max_lag_minutes\":10,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"revenue-operations\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]},{\"allowed_regions\":[\"ca\"],\"id\":\"campaign-suppression\",\"max_lag_minutes\":10,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"integrated-campaigns\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]},{\"allowed_regions\":[\"ca\"],\"id\":\"attribution-refresh\",\"max_lag_minutes\":60,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"marketing-analytics\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]},{\"allowed_regions\":[\"ca\"],\"id\":\"web-personalization\",\"max_lag_minutes\":10,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"web\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]},{\"allowed_regions\":[\"ca\"],\"id\":\"product-enrichment\",\"max_lag_minutes\":60,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"product-marketing\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]}]}}"
+    },
+    {
+      "id": "6a552b55e63509683c7e369f3ccc935b67e569857ec51d24d33bab71dcc93c33",
+      "parent": null,
+      "document": "{\"context\":{\"run\":\"launch-surge\",\"scenario\":\"launch-surge\"},\"parent\":null,\"plan\":{\"assessment\":{\"enabled_platforms\":[\"batch-hub\",\"stream-hub\"],\"feasible\":true,\"fixed_cost_cents\":470,\"scenarios\":[{\"capacity\":[{\"headroom\":95,\"limit\":100,\"resource\":\"crm-api\",\"slot\":0,\"used\":5},{\"headroom\":93,\"limit\":100,\"resource\":\"crm-api\",\"slot\":1,\"used\":7},{\"headroom\":93,\"limit\":100,\"resource\":\"crm-api\",\"slot\":2,\"used\":7},{\"headroom\":95,\"limit\":100,\"resource\":\"crm-api\",\"slot\":3,\"used\":5},{\"headroom\":226,\"limit\":250,\"resource\":\"crm-api\",\"slot\":\"total\",\"used\":24},{\"headroom\":175,\"limit\":180,\"resource\":\"destination-api\",\"slot\":0,\"used\":5},{\"headroom\":173,\"limit\":180,\"resource\":\"destination-api\",\"slot\":1,\"used\":7},{\"headroom\":173,\"limit\":180,\"resource\":\"destination-api\",\"slot\":2,\"used\":7},{\"headroom\":175,\"limit\":180,\"resource\":\"destination-api\",\"slot\":3,\"used\":5},{\"headroom\":426,\"limit\":450,\"resource\":\"destination-api\",\"slot\":\"total\",\"used\":24},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":0,\"used\":2},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":1,\"used\":2},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":2,\"used\":2},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":3,\"used\":2},{\"headroom\":52,\"limit\":60,\"resource\":\"bulk-jobs\",\"slot\":\"total\",\"used\":8}],\"charges\":[{\"batches_by_slot\":[1,1,1,1],\"option\":\"stream\",\"records_by_slot\":[100,200,200,100],\"variable_cost_cents\":8,\"workload\":\"lead-handoff\"},{\"batches_by_slot\":[1,2,2,1],\"option\":\"stream\",\"records_by_slot\":[200,400,400,200],\"variable_cost_cents\":12,\"workload\":\"campaign-suppression\"},{\"batches_by_slot\":[1,1,1,1],\"option\":\"bulk\",\"records_by_slot\":[300,600,600,300],\"variable_cost_cents\":8,\"workload\":\"attribution-refresh\"},{\"batches_by_slot\":[1,2,2,1],\"option\":\"stream\",\"records_by_slot\":[200,400,400,200],\"variable_cost_cents\":12,\"workload\":\"web-personalization\"},{\"batches_by_slot\":[1,1,1,1],\"option\":\"bulk\",\"records_by_slot\":[100,200,200,100],\"variable_cost_cents\":8,\"workload\":\"product-enrichment\"}],\"cost_cents\":518,\"id\":\"normal\"},{\"capacity\":[{\"headroom\":95,\"limit\":100,\"resource\":\"crm-api\",\"slot\":0,\"used\":5},{\"headroom\":52,\"limit\":100,\"resource\":\"crm-api\",\"slot\":1,\"used\":48},{\"headroom\":4,\"limit\":100,\"resource\":\"crm-api\",\"slot\":2,\"used\":96},{\"headroom\":93,\"limit\":100,\"resource\":\"crm-api\",\"slot\":3,\"used\":7},{\"headroom\":94,\"limit\":250,\"resource\":\"crm-api\",\"slot\":\"total\",\"used\":156},{\"headroom\":175,\"limit\":180,\"resource\":\"destination-api\",\"slot\":0,\"used\":5},{\"headroom\":132,\"limit\":180,\"resource\":\"destination-api\",\"slot\":1,\"used\":48},{\"headroom\":84,\"limit\":180,\"resource\":\"destination-api\",\"slot\":2,\"used\":96},{\"headroom\":173,\"limit\":180,\"resource\":\"destination-api\",\"slot\":3,\"used\":7},{\"headroom\":294,\"limit\":450,\"resource\":\"destination-api\",\"slot\":\"total\",\"used\":156},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":0,\"used\":2},{\"headroom\":12,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":1,\"used\":8},{\"headroom\":4,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":2,\"used\":16},{\"headroom\":18,\"limit\":20,\"resource\":\"bulk-jobs\",\"slot\":3,\"used\":2},{\"headroom\":32,\"limit\":60,\"resource\":\"bulk-jobs\",\"slot\":\"total\",\"used\":28}],\"charges\":[{\"batches_by_slot\":[1,8,16,1],\"option\":\"stream\",\"records_by_slot\":[100,2000,4000,200],\"variable_cost_cents\":52,\"workload\":\"lead-handoff\"},{\"batches_by_slot\":[1,16,32,2],\"option\":\"stream\",\"records_by_slot\":[200,4000,8000,400],\"variable_cost_cents\":102,\"workload\":\"campaign-suppression\"},{\"batches_by_slot\":[1,6,12,1],\"option\":\"bulk\",\"records_by_slot\":[300,6000,12000,600],\"variable_cost_cents\":40,\"workload\":\"attribution-refresh\"},{\"batches_by_slot\":[1,16,32,2],\"option\":\"stream\",\"records_by_slot\":[200,4000,8000,400],\"variable_cost_cents\":102,\"workload\":\"web-personalization\"},{\"batches_by_slot\":[1,2,4,1],\"option\":\"bulk\",\"records_by_slot\":[100,2000,4000,200],\"variable_cost_cents\":16,\"workload\":\"product-enrichment\"}],\"cost_cents\":782,\"id\":\"launch-surge\"}],\"violations\":[],\"worst_cost_cents\":782},\"contract\":1,\"implementation_hash\":\"14c1fb556316aee33a5681308fc1150744c22a58924c1867a5d45a709d145c42\",\"input_hash\":\"3af3122c31d3b75d5884211f25ebee6a89fc8c7722dd688c871943595361ec36\",\"selection\":{\"attribution-refresh\":\"bulk\",\"campaign-suppression\":\"stream\",\"lead-handoff\":\"stream\",\"product-enrichment\":\"bulk\",\"web-personalization\":\"stream\"},\"solver\":{\"backend\":\"SciPy milp / HiGHS\",\"lower_bound_cents\":782.0,\"message\":\"Optimization terminated successfully. (HiGHS Status 7: Optimal)\",\"numpy\":\"2.3.3\",\"objective_cents\":782,\"relative_gap\":0.0,\"scipy\":\"1.16.2\",\"status\":0,\"time_limit_seconds\":10.0},\"status\":\"optimal\"},\"profile\":{\"ack_delay_seconds\":0.8,\"capacity_override\":{},\"delay_seconds\":0.0003,\"faults\":[],\"max_attempts\":3,\"permission\":true,\"recovery_probe_cents\":1,\"retry_seconds\":0.025,\"source_delay\":{},\"timeout_seconds\":0.35,\"window_seconds\":6.0,\"workers\":8},\"spec\":{\"budget_cents\":2000,\"currency\":\"USD\",\"id\":\"campaign-launch\",\"platforms\":[{\"fixed_cost_cents\":0,\"id\":\"direct\"},{\"fixed_cost_cents\":120,\"id\":\"batch-hub\"},{\"fixed_cost_cents\":350,\"id\":\"stream-hub\"},{\"fixed_cost_cents\":700,\"id\":\"premium-hub\"}],\"resources\":[{\"id\":\"crm-api\",\"unit\":\"requests\"},{\"id\":\"destination-api\",\"unit\":\"requests\"},{\"id\":\"bulk-jobs\",\"unit\":\"requests\"}],\"scenarios\":[{\"capacities\":{\"bulk-jobs\":{\"per_slot\":[20,20,20,20],\"total\":60},\"crm-api\":{\"per_slot\":[100,100,100,100],\"total\":250},\"destination-api\":{\"per_slot\":[180,180,180,180],\"total\":450}},\"demands\":{\"attribution-refresh\":[300,600,600,300],\"campaign-suppression\":[200,400,400,200],\"lead-handoff\":[100,200,200,100],\"product-enrichment\":[100,200,200,100],\"web-personalization\":[200,400,400,200]},\"id\":\"normal\"},{\"capacities\":{\"bulk-jobs\":{\"per_slot\":[20,20,20,20],\"total\":60},\"crm-api\":{\"per_slot\":[100,100,100,100],\"total\":250},\"destination-api\":{\"per_slot\":[180,180,180,180],\"total\":450}},\"demands\":{\"attribution-refresh\":[300,6000,12000,600],\"campaign-suppression\":[200,4000,8000,400],\"lead-handoff\":[100,2000,4000,200],\"product-enrichment\":[100,2000,4000,200],\"web-personalization\":[200,4000,8000,400]},\"id\":\"launch-surge\"}],\"schema\":1,\"slot_minutes\":60,\"slots\":4,\"workloads\":[{\"allowed_regions\":[\"ca\"],\"id\":\"lead-handoff\",\"max_lag_minutes\":10,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"revenue-operations\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]},{\"allowed_regions\":[\"ca\"],\"id\":\"campaign-suppression\",\"max_lag_minutes\":10,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"integrated-campaigns\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]},{\"allowed_regions\":[\"ca\"],\"id\":\"attribution-refresh\",\"max_lag_minutes\":60,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"marketing-analytics\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]},{\"allowed_regions\":[\"ca\"],\"id\":\"web-personalization\",\"max_lag_minutes\":10,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"web\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]},{\"allowed_regions\":[\"ca\"],\"id\":\"product-enrichment\",\"max_lag_minutes\":60,\"options\":[{\"batch_size\":100,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":6,\"id\":\"rest\",\"lag_minutes\":5,\"platform\":\"direct\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"bulk\",\"lag_minutes\":30,\"platform\":\"batch-hub\",\"region\":\"ca\",\"resources\":{\"bulk-jobs\":1,\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":250,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":2,\"id\":\"stream\",\"lag_minutes\":2,\"platform\":\"stream-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"],\"cost_per_batch_cents\":10,\"id\":\"premium\",\"lag_minutes\":2,\"platform\":\"premium-hub\",\"region\":\"ca\",\"resources\":{\"crm-api\":1,\"destination-api\":1}},{\"batch_size\":1000,\"capabilities\":[\"upserts\"],\"cost_per_batch_cents\":0,\"id\":\"cheap-lossy\",\"lag_minutes\":90,\"platform\":\"direct\",\"region\":\"us\",\"resources\":{\"crm-api\":1}}],\"owner\":\"product-marketing\",\"required_capabilities\":[\"upserts\",\"deletes\",\"custom-fields\"]}]}}"
+    }
+  ],
+  "transitions": [
+    {
+      "sequence": 1,
+      "decision": "cd674432e1ab80b8a475678dc3d973ce78da3f554c741956098e3e57150c2983",
+      "state": "proposed",
+      "actor": "fixture-planner",
+      "at_ns": 1793291641661204400,
+      "detail": "{\"content_hash\":\"cd674432e1ab80b8a475678dc3d973ce78da3f554c741956098e3e57150c2983\"}"
+    },
+    {
+      "sequence": 2,
+      "decision": "cd674432e1ab80b8a475678dc3d973ce78da3f554c741956098e3e57150c2983",
+      "state": "validated",
+      "actor": "independent-plan-check",
+      "at_ns": 1793291641673204500,
+      "detail": "{\"assessment_hash\":\"f8f13092616eb0af517e46a6bf8945383f83cf6a0920a98e025f600f92e8b90a\"}"
+    },
+    {
+      "sequence": 3,
+      "decision": "cd674432e1ab80b8a475678dc3d973ce78da3f554c741956098e3e57150c2983",
+      "state": "authorized",
+      "actor": "synthetic-operator",
+      "at_ns": 1793291641685204500,
+      "detail": "{\"profile_hash\":\"999da76d539948a10940f6905e15d299f4d23eabc49288e8dadb6b2f2cfaafe6\"}"
+    },
+    {
+      "sequence": 4,
+      "decision": "cd674432e1ab80b8a475678dc3d973ce78da3f554c741956098e3e57150c2983",
+      "state": "observed",
+      "actor": "independent-observer",
+      "at_ns": 1793291664302226900,
+      "detail": "{\"evidence_hash\":\"0de82586bf5f6b89eed49b02861b75ae46653d38accc6739c715d7eda4d81f69\"}"
+    },
+    {
+      "sequence": 5,
+      "decision": "cd674432e1ab80b8a475678dc3d973ce78da3f554c741956098e3e57150c2983",
+      "state": "acceptable",
+      "actor": "independent-observer",
+      "at_ns": 1793291664312491100,
+      "detail": "{\"result_hash\":\"e01398475eda965b81ca9fbbcd1959ad7635ae1683d37e3c2ded4ceb4c4eb337\",\"violations\":[]}"
+    },
+    {
+      "sequence": 6,
+      "decision": "6a552b55e63509683c7e369f3ccc935b67e569857ec51d24d33bab71dcc93c33",
+      "state": "proposed",
+      "actor": "fixture-planner",
+      "at_ns": 1793291664353779200,
+      "detail": "{\"content_hash\":\"6a552b55e63509683c7e369f3ccc935b67e569857ec51d24d33bab71dcc93c33\"}"
+    },
+    {
+      "sequence": 7,
+      "decision": "6a552b55e63509683c7e369f3ccc935b67e569857ec51d24d33bab71dcc93c33",
+      "state": "validated",
+      "actor": "independent-plan-check",
+      "at_ns": 1793291664365635800,
+      "detail": "{\"assessment_hash\":\"f8f13092616eb0af517e46a6bf8945383f83cf6a0920a98e025f600f92e8b90a\"}"
+    },
+    {
+      "sequence": 8,
+      "decision": "6a552b55e63509683c7e369f3ccc935b67e569857ec51d24d33bab71dcc93c33",
+      "state": "authorized",
+      "actor": "synthetic-operator",
+      "at_ns": 1793291664376896500,
+      "detail": "{\"profile_hash\":\"999da76d539948a10940f6905e15d299f4d23eabc49288e8dadb6b2f2cfaafe6\"}"
+    },
+    {
+      "sequence": 9,
+      "decision": "6a552b55e63509683c7e369f3ccc935b67e569857ec51d24d33bab71dcc93c33",
+      "state": "observed",
+      "actor": "independent-observer",
+      "at_ns": 1793291687842325300,
+      "detail": "{\"evidence_hash\":\"7f5bd030f123251231166dd9eb89250cc96f81640d1efb7dc66eac8b9ccbbfed\"}"
+    },
+    {
+      "sequence": 10,
+      "decision": "6a552b55e63509683c7e369f3ccc935b67e569857ec51d24d33bab71dcc93c33",
+      "state": "revision_required",
+      "actor": "independent-observer",
+      "at_ns": 1793291687852325600,
+      "detail": "{\"result_hash\":\"a9e74d3a4726716ac39583525c07cc4d04f2f13097067b49efbdee769318c41f\",\"violations\":[\"incomplete_on_time_coverage\",\"unresolved_records\"]}"
+    }
+  ]
+}

@@ -74,6 +74,7 @@ def reconcile(evidence):
                 or config["window_ns"] != int(runtime["window_seconds"] * 1e9)
                 or config["slots"] != spec["slots"] or config["total"] != assumed["total"]
                 or config["per_slot"] != runtime["capacity_override"].get(resource, assumed["per_slot"][0])
+                or config['workflows'] != [w['id'] for w in spec['workloads']]
                 or any(config[k] != runtime[k] for k in ("faults", "permission", "delay_seconds", "ack_delay_seconds"))):
             violations.append("receiver_configuration_binding")
         requests = receiver["requests"]
@@ -108,6 +109,10 @@ def reconcile(evidence):
                 violations.append("receiver_admission_quota")
         if sum(admitted.values()) > config["total"]:
             violations.append("receiver_total_quota")
+        if (len(requests) > assumed['total']
+                or any(count > assumed['per_slot'][slot] for slot, count in arrivals.items()
+                       if 0 <= slot < spec['slots'])):
+            violations.append('modeled_request_envelope_exceeded')
         request_totals[resource] = len(requests)
         failures[resource] = dict(fail)
         capacities.append({"resource": resource, "predicted_requests": predicted_requests[resource],
@@ -174,6 +179,8 @@ def reconcile(evidence):
                 queue_delays.append((min(r["arrived_ns"] for r in posts) - batch["created_ns"]) / 1e9)
                 if any(r["arrived_ns"] >= batch["deadline_ns"] for r in posts):
                     violations.append("post_arrived_after_deadline")
+                if any(r['arrived_ns'] < batch['ready_ns'] for r in posts):
+                    violations.append('post_before_source_ready')
     actual_records = {r["id"]: json.loads(r["content"])
                       for r in evidence["receivers"].get("destination-api", {}).get("records", [])}
     if actual_records != expected_records:

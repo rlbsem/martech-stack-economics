@@ -10,6 +10,8 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
+import stack_economics
+
 from check_execution import check
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,7 +23,8 @@ def sources():
             if p.is_file() and p.suffix in ('.py', '.html', '.css', '.js', '.json', '.yml')
             and '__pycache__' not in p.parts} | {
                 name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
-                for name in ('pyproject.toml', 'requirements.lock', 'requirements-browser.lock', 'Dockerfile.assurance')}
+                for name in ('pyproject.toml', 'requirements.lock', 'requirements-browser.lock',
+                             'Dockerfile.assurance', '.dockerignore')}
 
 
 def main():
@@ -34,6 +37,12 @@ def main():
         raise ValueError('Use a new output directory to preserve prior observations')
     output.mkdir(parents=True)
     before = sources()
+    installed = Path(stack_economics.__file__).parent
+    for path in (ROOT / 'src/stack_economics').rglob('*'):
+        if path.is_file() and path.suffix in ('.py', '.html', '.css', '.js'):
+            assert path.read_bytes() == (installed / path.relative_to(ROOT / 'src/stack_economics')).read_bytes(), \
+                'Installed execution package differs from source'
+    (output / 'input-fingerprints.json').write_text(json.dumps(before, indent=2) + '\n', encoding='utf-8')
     start = time.monotonic()
     def execute(*arguments):
         subprocess.run([sys.executable, *arguments], cwd=ROOT, check=True)
@@ -53,6 +62,7 @@ def main():
               'source_revision_origin': 'git' if (ROOT / '.git').exists() else 'container_build_argument',
               'executed_at': datetime.now(UTC).isoformat(),
               'python': platform.python_version(), 'platform': platform.platform(),
+              'numerical_threads': {k: os.getenv(k) for k in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS')},
               'seconds': round(time.monotonic() - start, 3), 'decisions_reconciled': count,
               'scope': 'Actual local HTTP subprocesses, durable SQLite intent and independent receiver databases; '
                        'synthetic costs/records; accelerated timing. No external vendor or production acceptance.'}

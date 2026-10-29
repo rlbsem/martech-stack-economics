@@ -5,7 +5,6 @@ import time
 from contextlib import contextmanager
 
 from stack_economics.contracts import digest
-from stack_economics.planner import check_plan
 
 
 def encode(value):
@@ -91,6 +90,7 @@ def transition(path, decision, state, actor, detail):
 
 
 def authorize(path, decision, profile, actor="synthetic-operator"):
+    from stack_economics.planner import check_plan
     with database(path) as db:
         row = db.execute("SELECT document FROM decisions WHERE id=?", (decision,)).fetchone()
     if not row or digest(json.loads(row[0])["profile"]) != digest(profile):
@@ -101,6 +101,7 @@ def authorize(path, decision, profile, actor="synthetic-operator"):
 
 
 def verify_authorized(path, decision, spec, plan, profile, run, scenario):
+    from stack_economics.planner import check_plan
     with database(path) as db:
         row = db.execute("SELECT document FROM decisions WHERE id=?", (decision,)).fetchone()
         state = db.execute("SELECT state FROM transitions WHERE decision=? ORDER BY sequence DESC LIMIT 1",
