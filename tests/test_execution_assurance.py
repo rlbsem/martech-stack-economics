@@ -216,13 +216,24 @@ def test_source_failure_isolation_and_observed_budget_breach(tmp_path, small):
 
 
 def test_late_remote_commits_remain_visible(tmp_path, small):
+    # Isolate one batch so source setup cannot consume a one-second admission window.
+    # The receiver must actually admit, commit after the five-second deadline, and
+    # finish before observation; no clock mocking or backdated source timestamps.
+    small['workloads'] = small['workloads'][:1]
+    small['workloads'][0]['max_lag_minutes'] = 30
+    name = small['workloads'][0]['id']
+    for scenario in small['scenarios']:
+        scenario['demands'] = {name: [13]}
     ledger = tmp_path / 'ledger.sqlite'
     initialize(ledger)
     result = trial(tmp_path / 'late', small, solve(small), small['scenarios'][0]['id'],
-                   profile(window_seconds=1, faults=[{'resource': 'destination-api', 'kind': 'latency', 'seconds': 1.2}]),
+                   profile(window_seconds=10, ack_delay_seconds=7,
+                           faults=[{'resource': 'destination-api', 'kind': 'latency', 'seconds': 6}]),
                    'late', ledger)
-    assert result['result']['late_records'] > 0
+    assert result['result']['late_records'] == 13
+    assert result['result']['retained_destination_records'] == 11
     assert 'freshness_breach' in result['result']['violations']
+    assert 'post_arrived_after_deadline' not in result['result']['violations']
     assert not result['result']['acceptable']
 
 

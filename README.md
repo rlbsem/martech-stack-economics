@@ -103,7 +103,7 @@ python -m pip install --no-deps --no-build-isolation -e .
 python scripts/verify.py --output .local/math-verification-01
 ```
 
-Verification runs lint, dependency checks, automated tests, independent optimum comparisons and the asserted demonstration, then regenerates source-bound evidence. No API key, model download, cloud account, database or Docker engine is needed.
+Verification runs lint, dependency checks, automated tests, independent optimum comparisons and the asserted demonstration, then regenerates source-bound evidence. No API key, model download, cloud account, external database service or Docker engine is needed.
 
 For an individual decision:
 
