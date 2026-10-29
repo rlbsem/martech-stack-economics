@@ -36,4 +36,8 @@ Each executed trial directory contains `observations.json.gz`: full source batch
 
 The small protocol tests separately execute a real child-process crash after commit, exact receipt recovery, duplicate and changed-content retries, budget overrun, source isolation, late commits and altered measurements. A full transient-fault surge can correctly fail freshness even when acknowledgement recovery works.
 
-Browser screenshots and provenance are recorded separately after the current interface is verified. Their UI source revision may differ from the execution source above. Historical records are never relabeled as execution of newer code.
+The [browser verification record](browser/browser-verification.json) binds the execution summary, separate UI revision and actual UI file bytes. All **36 collapsed/expanded desktop/mobile states** passed the executed axe checks, with no page errors. Six genuine screenshots include the [accepted capacity revision](browser/capacity-revision-desktop.png), [rejected quota trial](browser/shared-quota-pressure-desktop.png) and [blocked mobile decision](browser/capacity-blocked-mobile.png). Automated accessibility checks are not a complete human accessibility audit.
+
+The [separate financial audit](financial-audit.json) recomputes pricing and API arithmetic using only the standard library. [Independent local teardown](local-teardown.json) found all 24 receiver ports closed and no matching receiver processes remaining. This is local cleanup evidence, not cloud or billing clearance.
+
+UI and execution revisions are deliberately separate. Historical records are never relabeled as execution of newer code. CI repeats actual execution on each proposed release head; its run records remain distinct from the committed local observations above.

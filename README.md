@@ -36,6 +36,15 @@ The additive **plan-to-execution assurance** layer runs those selected routes th
 
 The console is a real, read-only local application. It reads persisted evidence, exposes rejected outcomes and downloads the independent receiver observations. It needs no credentials or external service.
 
+<details>
+<summary>Actual console: the accepted capacity revision</summary>
+
+![Actual local console showing the revised architecture, independently observed requests and complete synthetic source coverage](docs/evidence/execution/browser/capacity-revision-desktop.png)
+
+[Screenshot provenance and browser checks](docs/evidence/execution/browser/browser-verification.json). These are recorded local results with synthetic prices, not a native vendor deployment.
+
+</details>
+
 ```bash
 # Inspect the committed, recorded execution evidence after installing the package.
 python -m stack_economics.assurance.console --evidence docs/evidence/execution/acceptance/execution
