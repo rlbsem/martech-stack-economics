@@ -41,3 +41,11 @@ The [browser verification record](browser/browser-verification.json) binds the e
 The [separate financial audit](financial-audit.json) recomputes pricing and API arithmetic using only the standard library. [Independent local teardown](local-teardown.json) found all 24 receiver ports closed and no matching receiver processes remaining. This is local cleanup evidence, not cloud or billing clearance.
 
 UI and execution revisions are deliberately separate. Historical records are never relabeled as execution of newer code. CI repeats actual execution on each proposed release head; its run records remain distinct from the committed local observations above.
+
+## Host-dependent rejection and CI failure propagation
+
+The local capacity revision above passed. The same profile on a slower Windows GitHub runner delivered **43,700 / 56,700 operations on time** and correctly remained `revision_required`. Its original [observations](ci-windows-rejection/observations.json.gz), [result](ci-windows-rejection/result.json) and [source/run context](ci-windows-rejection/context.json) are preserved. No freshness, quota, pricing or source constraint was relaxed.
+
+Artifact inspection exposed a workflow defect: a later successful command masked the verifier's failed exit status in PowerShell, leaving no completion record. That job status is not accepted as completed verification. The workflow now uses a single acceptance command; checked child processes and the financial audit must finish before a completion record is written.
+
+Evidence integrity and architecture acceptability are separate. The verifier accepts an accurately recorded rejection and rejects a fabricated success; a dedicated real-HTTP regression exercises both cases. This does not turn the Windows revision into an acceptable outcome or establish equivalent capacity across hosts.

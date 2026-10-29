@@ -11,6 +11,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 import stack_economics
+from stack_economics.cli import write_json
 
 from check_execution import check
 
@@ -50,6 +51,14 @@ def main():
     execute('-m', 'stack_economics.assurance.demo', '--root', str(ROOT), '--output', str(output / 'execution'),
             *(['--quick'] if args.quick else []))
     count = check(output / 'execution')
+    assert count == (2 if args.quick else 9), 'Incomplete experiment suite'
+    trials = json.loads((output / 'execution/summary.json').read_text(encoding='utf-8'))['trials']
+    required = {'normal', 'launch-surge'} if args.quick else {
+        'normal', 'launch-surge', 'transient-recovery', 'delayed-source', 'slow-destination',
+        'shared-quota-pressure', 'revoked-permission', 'capacity-revision', 'capacity-blocked'}
+    assert {t['name'] for t in trials} == required, 'Missing or unexpected experiment'
+    execute('scripts/financial_audit.py', '--evidence', str(output / 'execution'),
+            '--output', str(output / 'financial-audit.json'))
     assert before == sources(), 'Execution source changed during acceptance'
     head = (subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
             if (ROOT / '.git').exists() else os.environ['STACK_ECONOMICS_SOURCE_COMMIT'])
@@ -58,6 +67,9 @@ def main():
                                           'requirements.lock', 'Dockerfile.assurance'], cwd=ROOT, text=True).strip()
                    if (ROOT / '.git').exists() else None)
     record = {'schema': 1, 'source_commit': head, 'source_sha256': before,
+              'verification_passed': True,
+              'outcomes': {t['name']: 'blocked' if t.get('blocked') else
+                           'acceptable' if t['result']['acceptable'] else 'revision_required' for t in trials},
               'source_committed': not bool(uncommitted) if uncommitted is not None else None,
               'source_revision_origin': 'git' if (ROOT / '.git').exists() else 'container_build_argument',
               'executed_at': datetime.now(UTC).isoformat(),
@@ -66,8 +78,8 @@ def main():
               'seconds': round(time.monotonic() - start, 3), 'decisions_reconciled': count,
               'scope': 'Actual local HTTP subprocesses, durable SQLite intent and independent receiver databases; '
                        'synthetic costs/records; accelerated timing. No external vendor or production acceptance.'}
-    (output / 'verification.json').write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
-    print('Acceptance completed:', output)
+    write_json(output / 'verification.json', record)
+    print('Evidence verification completed:', output)
 
 
 if __name__ == '__main__':

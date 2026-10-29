@@ -1,6 +1,6 @@
 {
-  "files_checked": 106,
-  "relative_markdown_links": 51,
+  "files_checked": 111,
+  "relative_markdown_links": 55,
   "credential_patterns_found": 0,
   "boundary": "Heuristic credential scan and repository-local Markdown target checks; not a formal security audit"
 }

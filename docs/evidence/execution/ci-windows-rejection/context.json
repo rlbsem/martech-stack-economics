@@ -1,0 +1,13 @@
+{
+  "workflow_run": "https://github.com/rlbsem/martech-stack-economics/actions/runs/40920694826",
+  "job_id": 123612790098,
+  "pr_head": "1e89582f4eb90441150f71bc8a530d84c571313d",
+  "checkout_revision": "ae38c4a66e9560aa998f00ccf9b3caa6a6063939",
+  "evidence_hash": "ea80fbf0e72e62405b0eac63fb6744b25857a25b8df2e6912c863c84d9ec048c",
+  "result_hash": "c82804ef2b25a00204d9507810d86038d8b7539c45d95c029493446cf4319358",
+  "source_summary_sha256": "13d238aee91856969910830b6bb826a8b9111fd798b3cf36580253dc10eed42b",
+  "original_job_conclusion": "success",
+  "completion_record_present": false,
+  "archive_scope": "One original rejected revision; remaining run data remains in the linked Actions artifact",
+  "interpretation": "The job status was masked by a later successful PowerShell command. This is not a completed acceptance verification."
+}

@@ -224,3 +224,29 @@ def test_late_remote_commits_remain_visible(tmp_path, small):
     assert result['result']['late_records'] > 0
     assert 'freshness_breach' in result['result']['violations']
     assert not result['result']['acceptable']
+
+
+def test_evidence_verification_preserves_a_rejected_revision(tmp_path, small):
+    import importlib.util
+    from pathlib import Path
+
+    module_spec = importlib.util.spec_from_file_location(
+        'evidence_checker', Path(__file__).resolve().parents[1] / 'scripts/check_execution.py')
+    checker = importlib.util.module_from_spec(module_spec)
+    module_spec.loader.exec_module(checker)
+    ledger = tmp_path / 'ledger.sqlite'
+    initialize(ledger)
+    recorded = trial(tmp_path / 'capacity-revision', small, solve(small), small['scenarios'][0]['id'],
+                     profile(window_seconds=10, capacity_override={'crm-api': 2}),
+                     'capacity-revision', ledger)
+    assert recorded['result']['acceptable'] is False
+    assert recorded['result']['on_time_records'] == 26
+    summary = {'trials': [recorded], 'decisions': rows(ledger, 'decisions'),
+               'transitions': rows(ledger, 'transitions')}
+    path = tmp_path / 'summary.json'
+    path.write_text(json.dumps(summary), encoding='utf-8')
+    assert checker.check(tmp_path) == 1  # Valid evidence of an unacceptable trial.
+    summary['trials'][0]['result']['acceptable'] = True
+    path.write_text(json.dumps(summary), encoding='utf-8')
+    with pytest.raises(AssertionError, match='Recomputed result differs'):
+        checker.check(tmp_path)

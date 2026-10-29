@@ -39,8 +39,9 @@ def check(directory):
                           'acceptable' if result['acceptable'] else 'revision_required']
         print(trial['name'], 'acceptable' if result['acceptable'] else ', '.join(result['violations']))
     # These are engineering expectations, not values to overwrite into a measured result.
-    # A surge's operational verdict is measured, never forced to match modeled feasibility.
-    for name in ('normal', 'capacity-revision'):
+    # Integrity verification must preserve a correctly rejected revision on a slower host.
+    # The normal positive control must pass; a revised architecture is still measured.
+    for name in ('normal',):
         if name in ids:
             assert next(t for t in summary['trials'] if t['name'] == name)['result']['acceptable'], name
     for name in ('delayed-source', 'slow-destination', 'shared-quota-pressure', 'revoked-permission'):
