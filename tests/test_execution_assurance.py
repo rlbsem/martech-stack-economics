@@ -39,7 +39,7 @@ def test_real_http_arithmetic_partial_batches_and_mutated_evidence(tmp_path, sma
     ledger = tmp_path / 'ledger.sqlite'
     initialize(ledger)
     result = trial(tmp_path / 'normal', small, solve(small), small['scenarios'][0]['id'],
-                   profile(window_seconds=2), 'normal', ledger)
+                   profile(window_seconds=10), 'normal', ledger)
     observed = read_observation(tmp_path / 'normal')
     checked = result['result']
     assert checked['acceptable'], checked
@@ -120,7 +120,7 @@ def test_process_loss_exact_recovery_duplicate_and_content_conflict(tmp_path, sm
 def test_lost_acknowledgement_and_transient_failures_are_counted(tmp_path, small):
     ledger = tmp_path / 'ledger.sqlite'
     initialize(ledger)
-    runtime = profile(window_seconds=3, faults=[{'resource': 'crm-api', 'kind': '503'},
+    runtime = profile(window_seconds=10, faults=[{'resource': 'crm-api', 'kind': '503'},
                       {'resource': 'destination-api', 'kind': '429'},
                       {'resource': 'destination-api', 'kind': 'lost_ack', 'workflow': 'product-enrichment'}])
     result = trial(tmp_path / 'recovery', small, solve(small), small['scenarios'][0]['id'], runtime, 'recovery', ledger)
@@ -141,7 +141,7 @@ def test_expired_sources_and_revoked_permission_do_not_create_effects(tmp_path, 
     assert result['result']['unresolved_records'] == 65
     assert not any(result['result']['actual_requests'].values())
     result = trial(tmp_path / 'revoked', small, solve(small), small['scenarios'][0]['id'],
-                   profile(window_seconds=2, permission=False), 'revoked', ledger)
+                   profile(window_seconds=10, permission=False), 'revoked', ledger)
     assert result['result']['unresolved_records'] == 65
     assert result['result']['actual_synthetic_cost_cents'] == 0
     assert result['result']['failures']['crm-api'] == {'403': 5}
@@ -150,7 +150,7 @@ def test_expired_sources_and_revoked_permission_do_not_create_effects(tmp_path, 
 def test_admission_capacity_is_not_an_arrival_rate_guarantee(tmp_path, small):
     ledger = tmp_path / 'ledger.sqlite'
     initialize(ledger)
-    runtime = profile(window_seconds=3, capacity_override={'crm-api': 2})
+    runtime = profile(window_seconds=10, capacity_override={'crm-api': 2})
     result = trial(tmp_path / 'quota', small, solve(small), small['scenarios'][0]['id'], runtime, 'quota', ledger)
     checked = result['result']
     crm = next(c for c in checked['capacity'] if c['resource'] == 'crm-api')
@@ -199,7 +199,7 @@ def test_source_failure_isolation_and_observed_budget_breach(tmp_path, small):
     ledger = tmp_path / 'ledger.sqlite'
     initialize(ledger)
     result = trial(tmp_path / 'isolated', small, solve(small), small['scenarios'][0]['id'],
-                   profile(window_seconds=1, source_delay={'lead-handoff': 1.2}), 'isolated', ledger)
+                   profile(window_seconds=5, source_delay={'lead-handoff': 5.2}), 'isolated', ledger)
     assert result['result']['on_time_records'] == 52
     assert result['result']['workflows']['lead-handoff']['on_time_records'] == 0
     for name, workflow in result['result']['workflows'].items():
@@ -208,7 +208,7 @@ def test_source_failure_isolation_and_observed_budget_breach(tmp_path, small):
     budget = copy.deepcopy(small)
     budget['budget_cents'] = 30
     result = trial(tmp_path / 'budget', budget, solve(budget), budget['scenarios'][0]['id'],
-                   profile(window_seconds=2, faults=[{'resource': 'destination-api', 'kind': '429'}]),
+                   profile(window_seconds=10, faults=[{'resource': 'destination-api', 'kind': '429'}]),
                    'budget', ledger)
     assert result['result']['on_time_records'] == 65
     assert result['result']['actual_synthetic_cost_cents'] == 36

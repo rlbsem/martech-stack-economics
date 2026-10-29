@@ -1,0 +1,69 @@
+{
+  "boundary": "Independent standard-library arithmetic over actual recorded local HTTP operations; synthetic prices only",
+  "trials": [
+    {
+      "trial": "capacity-revision",
+      "currency": "USD",
+      "predicted_cents": 1236,
+      "observed_synthetic_cents": 1236,
+      "recorded_acceptable": true,
+      "source_records": 56700
+    },
+    {
+      "trial": "delayed-source",
+      "currency": "USD",
+      "predicted_cents": 518,
+      "observed_synthetic_cents": 510,
+      "recorded_acceptable": false,
+      "source_records": 5400
+    },
+    {
+      "trial": "launch-surge",
+      "currency": "USD",
+      "predicted_cents": 782,
+      "observed_synthetic_cents": 732,
+      "recorded_acceptable": false,
+      "source_records": 56700
+    },
+    {
+      "trial": "normal",
+      "currency": "USD",
+      "predicted_cents": 518,
+      "observed_synthetic_cents": 518,
+      "recorded_acceptable": true,
+      "source_records": 5400
+    },
+    {
+      "trial": "revoked-permission",
+      "currency": "USD",
+      "predicted_cents": 518,
+      "observed_synthetic_cents": 470,
+      "recorded_acceptable": false,
+      "source_records": 5400
+    },
+    {
+      "trial": "shared-quota-pressure",
+      "currency": "USD",
+      "predicted_cents": 782,
+      "observed_synthetic_cents": 710,
+      "recorded_acceptable": false,
+      "source_records": 56700
+    },
+    {
+      "trial": "slow-destination",
+      "currency": "USD",
+      "predicted_cents": 518,
+      "observed_synthetic_cents": 523,
+      "recorded_acceptable": false,
+      "source_records": 5400
+    },
+    {
+      "trial": "transient-recovery",
+      "currency": "USD",
+      "predicted_cents": 782,
+      "observed_synthetic_cents": 735,
+      "recorded_acceptable": false,
+      "source_records": 56700
+    }
+  ]
+}

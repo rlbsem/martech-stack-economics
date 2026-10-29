@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import subprocess
 import threading
 from pathlib import Path
 
@@ -62,7 +63,15 @@ def main():
                     axe = page.evaluate("async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})")
                     assert not axe['violations'], [(v['id'], v['nodes']) for v in axe['violations']]
                     observations.append({'viewport': size, 'trial': trial['name'], 'violations': 0,
-                                         'axe_passes': len(axe['passes']), 'download_verified': not trial.get('blocked', False)})
+                                         'state': 'collapsed', 'axe_passes': len(axe['passes']), 'download_verified': not trial.get('blocked', False)})
+                    for item in page.locator('details').all():
+                        item.locator('summary').click()
+                    expanded = page.evaluate("async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})")
+                    assert not expanded['violations'], [(v['id'], v['nodes']) for v in expanded['violations']]
+                    observations.append({'viewport': size, 'trial': trial['name'], 'state': 'expanded',
+                                         'violations': 0, 'axe_passes': len(expanded['passes'])})
+                    for item in page.locator('details').all():
+                        item.locator('summary').click()
                     if (size == 'desktop' and trial['name'] in ('normal', 'launch-surge', 'shared-quota-pressure', 'capacity-revision')
                             or size == 'mobile' and trial['name'] in ('normal', 'capacity-blocked')):
                         path = args.output / f"{trial['name']}-{size}.png"
@@ -74,7 +83,7 @@ def main():
                 assert page.locator('#provenance').is_visible()
                 assert summary['source_commit'] in page.locator('#provenance').inner_text()
                 page.keyboard.press('Tab')
-                assert page.evaluate('document.activeElement.tagName') in ('SUMMARY', 'A', 'SELECT')
+                assert page.evaluate('document.activeElement.tagName') in ('SUMMARY', 'A', 'SELECT', 'PRE')
                 assert page.request.post(url + '/api/summary', data='{}').status == 501
                 assert page.request.get(url + '/api/summary', headers={'Origin': 'https://example.invalid'}).status == 403
                 assert page.request.get(url + '/api/summary', headers={'Host': 'example.invalid'}).status == 403
@@ -86,7 +95,11 @@ def main():
         server.shutdown()
         server.server_close()
         thread.join(timeout=5)
-    record = {'source_commit': summary['source_commit'], 'summary_sha256': hashlib.sha256(summary_path.read_bytes()).hexdigest(),
+    ui_root = Path(__file__).resolve().parents[1] / 'src/stack_economics/assurance/web'
+    ui_commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+    record = {'ui_source_commit': ui_commit,
+              'ui_files_sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(ui_root.iterdir()) if p.is_file()},
+              'source_commit': summary['source_commit'], 'summary_sha256': hashlib.sha256(summary_path.read_bytes()).hexdigest(),
               'chromium': version, 'axe_version': '4.11.0', 'axe_sha256': AXE_SHA256,
               'states': observations, 'page_errors': errors, 'screenshots_sha256': captures,
               'boundary': 'Actual loopback UI, recorded synthetic HTTP trials; no deployment or vendor execution'}

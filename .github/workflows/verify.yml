@@ -37,9 +37,13 @@ jobs:
       - name: Install package from source
         run: python -m pip install --no-deps --no-build-isolation .
       - name: Check immutable baseline and public package
-        run: python scripts/package_integrity.py
+        run: |
+          python scripts/package_integrity.py
+          python scripts/audit_public.py
       - name: Verify solver, real HTTP execution and independent reconciliation
-        run: python scripts/verify_assurance.py --output .local/acceptance
+        run: |
+          python scripts/verify_assurance.py --output .local/acceptance
+          python scripts/financial_audit.py --evidence .local/acceptance/execution --output .local/acceptance/financial-audit.json
       - name: Install isolated browser verification tools
         if: runner.os == 'Linux'
         run: |
