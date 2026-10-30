@@ -1,0 +1,683 @@
+{
+  "schema": "enterprise-economics/v1",
+  "id": "multibrand-2026",
+  "currency": "USD",
+  "year": 2026,
+  "synthetic": true,
+  "customer_population": 12000000,
+  "price_basis": "All rates are synthetic allocated planning assumptions, not vendor prices or quotes.",
+  "months": [
+    {
+      "id": "2026-01",
+      "days": 31,
+      "demand_percent": 80
+    },
+    {
+      "id": "2026-02",
+      "days": 28,
+      "demand_percent": 82
+    },
+    {
+      "id": "2026-03",
+      "days": 31,
+      "demand_percent": 90
+    },
+    {
+      "id": "2026-04",
+      "days": 30,
+      "demand_percent": 95
+    },
+    {
+      "id": "2026-05",
+      "days": 31,
+      "demand_percent": 98
+    },
+    {
+      "id": "2026-06",
+      "days": 30,
+      "demand_percent": 100
+    },
+    {
+      "id": "2026-07",
+      "days": 31,
+      "demand_percent": 96
+    },
+    {
+      "id": "2026-08",
+      "days": 31,
+      "demand_percent": 100
+    },
+    {
+      "id": "2026-09",
+      "days": 30,
+      "demand_percent": 105
+    },
+    {
+      "id": "2026-10",
+      "days": 31,
+      "demand_percent": 115
+    },
+    {
+      "id": "2026-11",
+      "days": 30,
+      "demand_percent": 130
+    },
+    {
+      "id": "2026-12",
+      "days": 31,
+      "demand_percent": 109
+    }
+  ],
+  "conditions": [
+    {
+      "id": "operating",
+      "demand_percent": 100,
+      "retry_percent": 2,
+      "peak_percent": 100,
+      "quota_percent": 100
+    },
+    {
+      "id": "campaign-disruption",
+      "demand_percent": 125,
+      "retry_percent": 10,
+      "peak_percent": 180,
+      "quota_percent": 70
+    }
+  ],
+  "platforms": [
+    {
+      "id": "event-fabric",
+      "monthly_fixed_cents": 350000
+    },
+    {
+      "id": "integration-hub",
+      "monthly_fixed_cents": 600000
+    },
+    {
+      "id": "warehouse",
+      "monthly_fixed_cents": 180000
+    }
+  ],
+  "tiers": [
+    {
+      "id": "standard",
+      "workers": 4,
+      "worker_month_cents": 110000,
+      "support_hours": 8,
+      "work_units_hour": 50000,
+      "crm_calls_hour": 16000,
+      "included_requests_month": 400000
+    },
+    {
+      "id": "expanded",
+      "workers": 8,
+      "worker_month_cents": 110000,
+      "support_hours": 14,
+      "work_units_hour": 110000,
+      "crm_calls_hour": 36000,
+      "included_requests_month": 900000
+    },
+    {
+      "id": "resilient",
+      "workers": 16,
+      "worker_month_cents": 110000,
+      "support_hours": 22,
+      "work_units_hour": 240000,
+      "crm_calls_hour": 80000,
+      "included_requests_month": 1800000
+    }
+  ],
+  "support_hour_cents": 15000,
+  "overage_cents_per_request": 1,
+  "capacity_utilization_percent": 80,
+  "annual_budget_cents": 80000000,
+  "workloads": [
+    {
+      "id": "web-events",
+      "source_events_month": 65000000,
+      "downstream_multiplier": 1,
+      "payload_bytes": 1800,
+      "peak_hour_ppm": 4000,
+      "max_lag_minutes": 15,
+      "required_capabilities": [
+        "events"
+      ],
+      "allowed_regions": [
+        "eu"
+      ],
+      "purpose": "Web collection \u2192 governed warehouse",
+      "options": [
+        {
+          "id": "stream",
+          "platform": "event-fabric",
+          "batch_size": 250,
+          "lag_minutes": 1,
+          "region": "eu",
+          "capabilities": [
+            "events"
+          ],
+          "event_cents_per_1000": 3,
+          "request_cents_per_1000": 30,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 80,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 3
+        },
+        {
+          "id": "microbatch",
+          "platform": "integration-hub",
+          "batch_size": 1000,
+          "lag_minutes": 5,
+          "region": "eu",
+          "capabilities": [
+            "events"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 15,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 40,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 1
+        },
+        {
+          "id": "bulk",
+          "platform": "warehouse",
+          "batch_size": 5000,
+          "lag_minutes": 60,
+          "region": "eu",
+          "capabilities": [
+            "events",
+            "analytics"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 5,
+          "warehouse_cents_per_tib": 700,
+          "egress_cents_per_gib": 0,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 1
+        }
+      ]
+    },
+    {
+      "id": "product-events",
+      "source_events_month": 18000000,
+      "downstream_multiplier": 1,
+      "payload_bytes": 1800,
+      "peak_hour_ppm": 4000,
+      "max_lag_minutes": 15,
+      "required_capabilities": [
+        "events"
+      ],
+      "allowed_regions": [
+        "eu"
+      ],
+      "purpose": "Product telemetry \u2192 CDP / analytics",
+      "options": [
+        {
+          "id": "stream",
+          "platform": "event-fabric",
+          "batch_size": 250,
+          "lag_minutes": 1,
+          "region": "eu",
+          "capabilities": [
+            "events"
+          ],
+          "event_cents_per_1000": 3,
+          "request_cents_per_1000": 30,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 80,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 3
+        },
+        {
+          "id": "microbatch",
+          "platform": "integration-hub",
+          "batch_size": 1000,
+          "lag_minutes": 5,
+          "region": "eu",
+          "capabilities": [
+            "events"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 15,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 40,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 1
+        },
+        {
+          "id": "bulk",
+          "platform": "warehouse",
+          "batch_size": 5000,
+          "lag_minutes": 60,
+          "region": "eu",
+          "capabilities": [
+            "events",
+            "analytics"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 5,
+          "warehouse_cents_per_tib": 700,
+          "egress_cents_per_gib": 0,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 1
+        }
+      ]
+    },
+    {
+      "id": "profile-changes",
+      "source_events_month": 6000000,
+      "downstream_multiplier": 2,
+      "payload_bytes": 3000,
+      "peak_hour_ppm": 4000,
+      "max_lag_minutes": 15,
+      "required_capabilities": [
+        "profiles",
+        "delete"
+      ],
+      "allowed_regions": [
+        "eu"
+      ],
+      "purpose": "Identity / consent \u2192 CRM and CDP",
+      "options": [
+        {
+          "id": "stream",
+          "platform": "event-fabric",
+          "batch_size": 250,
+          "lag_minutes": 1,
+          "region": "eu",
+          "capabilities": [
+            "profiles",
+            "delete"
+          ],
+          "event_cents_per_1000": 3,
+          "request_cents_per_1000": 30,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 80,
+          "crm_calls_per_request": 1,
+          "work_units_per_request": 3
+        },
+        {
+          "id": "microbatch",
+          "platform": "integration-hub",
+          "batch_size": 1000,
+          "lag_minutes": 5,
+          "region": "eu",
+          "capabilities": [
+            "profiles",
+            "delete"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 15,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 40,
+          "crm_calls_per_request": 1,
+          "work_units_per_request": 1
+        },
+        {
+          "id": "bulk",
+          "platform": "warehouse",
+          "batch_size": 5000,
+          "lag_minutes": 60,
+          "region": "eu",
+          "capabilities": [
+            "events",
+            "analytics"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 5,
+          "warehouse_cents_per_tib": 700,
+          "egress_cents_per_gib": 0,
+          "crm_calls_per_request": 1,
+          "work_units_per_request": 1
+        }
+      ]
+    },
+    {
+      "id": "identity-links",
+      "source_events_month": 4000000,
+      "downstream_multiplier": 1,
+      "payload_bytes": 3000,
+      "peak_hour_ppm": 4000,
+      "max_lag_minutes": 5,
+      "required_capabilities": [
+        "identity"
+      ],
+      "allowed_regions": [
+        "eu"
+      ],
+      "purpose": "Identity service \u2192 customer profile",
+      "options": [
+        {
+          "id": "stream",
+          "platform": "event-fabric",
+          "batch_size": 250,
+          "lag_minutes": 1,
+          "region": "eu",
+          "capabilities": [
+            "identity"
+          ],
+          "event_cents_per_1000": 3,
+          "request_cents_per_1000": 30,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 80,
+          "crm_calls_per_request": 1,
+          "work_units_per_request": 3
+        },
+        {
+          "id": "microbatch",
+          "platform": "integration-hub",
+          "batch_size": 1000,
+          "lag_minutes": 5,
+          "region": "eu",
+          "capabilities": [
+            "identity"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 15,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 40,
+          "crm_calls_per_request": 1,
+          "work_units_per_request": 1
+        },
+        {
+          "id": "bulk",
+          "platform": "warehouse",
+          "batch_size": 5000,
+          "lag_minutes": 60,
+          "region": "eu",
+          "capabilities": [
+            "events",
+            "analytics"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 5,
+          "warehouse_cents_per_tib": 700,
+          "egress_cents_per_gib": 0,
+          "crm_calls_per_request": 1,
+          "work_units_per_request": 1
+        }
+      ]
+    },
+    {
+      "id": "consent-changes",
+      "source_events_month": 1000000,
+      "downstream_multiplier": 3,
+      "payload_bytes": 3000,
+      "peak_hour_ppm": 4000,
+      "max_lag_minutes": 1,
+      "required_capabilities": [
+        "delete",
+        "consent"
+      ],
+      "allowed_regions": [
+        "eu"
+      ],
+      "purpose": "Consent \u2192 marketing suppression destinations",
+      "options": [
+        {
+          "id": "stream",
+          "platform": "event-fabric",
+          "batch_size": 250,
+          "lag_minutes": 1,
+          "region": "eu",
+          "capabilities": [
+            "delete",
+            "consent"
+          ],
+          "event_cents_per_1000": 3,
+          "request_cents_per_1000": 30,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 80,
+          "crm_calls_per_request": 2,
+          "work_units_per_request": 3
+        },
+        {
+          "id": "microbatch",
+          "platform": "integration-hub",
+          "batch_size": 1000,
+          "lag_minutes": 5,
+          "region": "eu",
+          "capabilities": [
+            "delete",
+            "consent"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 15,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 40,
+          "crm_calls_per_request": 2,
+          "work_units_per_request": 1
+        },
+        {
+          "id": "bulk",
+          "platform": "warehouse",
+          "batch_size": 5000,
+          "lag_minutes": 60,
+          "region": "eu",
+          "capabilities": [
+            "events",
+            "analytics"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 5,
+          "warehouse_cents_per_tib": 700,
+          "egress_cents_per_gib": 0,
+          "crm_calls_per_request": 2,
+          "work_units_per_request": 1
+        }
+      ]
+    },
+    {
+      "id": "crm-handoffs",
+      "source_events_month": 2000000,
+      "downstream_multiplier": 1,
+      "payload_bytes": 3000,
+      "peak_hour_ppm": 4000,
+      "max_lag_minutes": 5,
+      "required_capabilities": [
+        "owner"
+      ],
+      "allowed_regions": [
+        "eu"
+      ],
+      "purpose": "CRM \u2192 lifecycle / seller handoff",
+      "options": [
+        {
+          "id": "stream",
+          "platform": "event-fabric",
+          "batch_size": 250,
+          "lag_minutes": 1,
+          "region": "eu",
+          "capabilities": [
+            "owner"
+          ],
+          "event_cents_per_1000": 3,
+          "request_cents_per_1000": 30,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 80,
+          "crm_calls_per_request": 1,
+          "work_units_per_request": 3
+        },
+        {
+          "id": "microbatch",
+          "platform": "integration-hub",
+          "batch_size": 1000,
+          "lag_minutes": 5,
+          "region": "eu",
+          "capabilities": [
+            "owner"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 15,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 40,
+          "crm_calls_per_request": 1,
+          "work_units_per_request": 1
+        },
+        {
+          "id": "bulk",
+          "platform": "warehouse",
+          "batch_size": 5000,
+          "lag_minutes": 60,
+          "region": "eu",
+          "capabilities": [
+            "events",
+            "analytics"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 5,
+          "warehouse_cents_per_tib": 700,
+          "egress_cents_per_gib": 0,
+          "crm_calls_per_request": 1,
+          "work_units_per_request": 1
+        }
+      ]
+    },
+    {
+      "id": "campaign-activation",
+      "source_events_month": 3000000,
+      "downstream_multiplier": 2,
+      "payload_bytes": 3000,
+      "peak_hour_ppm": 7000,
+      "max_lag_minutes": 15,
+      "required_capabilities": [
+        "activation"
+      ],
+      "allowed_regions": [
+        "eu"
+      ],
+      "purpose": "CDP \u2192 journey and campaign destinations",
+      "options": [
+        {
+          "id": "stream",
+          "platform": "event-fabric",
+          "batch_size": 250,
+          "lag_minutes": 1,
+          "region": "eu",
+          "capabilities": [
+            "activation"
+          ],
+          "event_cents_per_1000": 3,
+          "request_cents_per_1000": 30,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 80,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 3
+        },
+        {
+          "id": "microbatch",
+          "platform": "integration-hub",
+          "batch_size": 1000,
+          "lag_minutes": 5,
+          "region": "eu",
+          "capabilities": [
+            "activation"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 15,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 40,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 1
+        },
+        {
+          "id": "bulk",
+          "platform": "warehouse",
+          "batch_size": 5000,
+          "lag_minutes": 60,
+          "region": "eu",
+          "capabilities": [
+            "events",
+            "analytics"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 5,
+          "warehouse_cents_per_tib": 700,
+          "egress_cents_per_gib": 0,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 1
+        }
+      ]
+    },
+    {
+      "id": "attribution",
+      "source_events_month": 1000000,
+      "downstream_multiplier": 1,
+      "payload_bytes": 3000,
+      "peak_hour_ppm": 4000,
+      "max_lag_minutes": 120,
+      "required_capabilities": [
+        "analytics"
+      ],
+      "allowed_regions": [
+        "eu"
+      ],
+      "purpose": "Warehouse \u2192 attribution / reporting",
+      "options": [
+        {
+          "id": "stream",
+          "platform": "event-fabric",
+          "batch_size": 250,
+          "lag_minutes": 1,
+          "region": "eu",
+          "capabilities": [
+            "analytics"
+          ],
+          "event_cents_per_1000": 3,
+          "request_cents_per_1000": 30,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 80,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 3
+        },
+        {
+          "id": "microbatch",
+          "platform": "integration-hub",
+          "batch_size": 1000,
+          "lag_minutes": 5,
+          "region": "eu",
+          "capabilities": [
+            "analytics"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 15,
+          "warehouse_cents_per_tib": 0,
+          "egress_cents_per_gib": 40,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 1
+        },
+        {
+          "id": "bulk",
+          "platform": "warehouse",
+          "batch_size": 5000,
+          "lag_minutes": 60,
+          "region": "eu",
+          "capabilities": [
+            "events",
+            "analytics"
+          ],
+          "event_cents_per_1000": 1,
+          "request_cents_per_1000": 5,
+          "warehouse_cents_per_tib": 700,
+          "egress_cents_per_gib": 0,
+          "crm_calls_per_request": 0,
+          "work_units_per_request": 1
+        }
+      ]
+    }
+  ],
+  "reference": {
+    "tier": "expanded",
+    "routes": {
+      "web-events": "microbatch",
+      "product-events": "microbatch",
+      "profile-changes": "microbatch",
+      "identity-links": "microbatch",
+      "consent-changes": "stream",
+      "crm-handoffs": "microbatch",
+      "campaign-activation": "microbatch",
+      "attribution": "bulk"
+    }
+  }
+}

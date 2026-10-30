@@ -51,6 +51,11 @@ jobs:
       - name: Verify actual desktop and mobile console
         if: runner.os == 'Linux'
         run: python scripts/browser_acceptance.py --evidence .local/acceptance/execution --output .local/browser
+      - name: Verify enterprise model against recorded results
+        run: python scripts/enterprise_verify.py --check docs/evidence/enterprise/acceptance
+      - name: Verify enterprise desktop and mobile console
+        if: runner.os == 'Linux'
+        run: python scripts/enterprise_browser.py --enterprise .local/acceptance/enterprise --execution .local/acceptance/execution --output .local/enterprise-browser
       - name: Retain test and planning evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -62,6 +67,7 @@ jobs:
             .local/acceptance/**/*.xml
             .local/acceptance/**/*.md
             .local/browser/
+            .local/enterprise-browser/
           include-hidden-files: true
           if-no-files-found: warn
   container:

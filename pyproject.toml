@@ -14,6 +14,7 @@ stack-economics = "stack_economics.cli:main"
 
 [tool.setuptools.package-data]
 "stack_economics.assurance" = ["web/*.html", "web/*.css", "web/*.js"]
+"stack_economics.enterprise" = ["web/*.html", "web/*.css", "web/*.js"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -1,134 +1,91 @@
 # MarTech Stack Economics
 
-[![Windows + Linux CI](https://github.com/rlbsem/martech-stack-economics/actions/workflows/verify.yml/badge.svg)](https://github.com/rlbsem/martech-stack-economics/actions/workflows/verify.yml)
+[![Windows + Linux + container CI](https://github.com/rlbsem/martech-stack-economics/actions/workflows/verify.yml/badge.svg)](https://github.com/rlbsem/martech-stack-economics/actions/workflows/verify.yml)
 
-**Can we reduce integration cost without making launch-day workflows late, losing required data, or exhausting a shared API quota?**
+**Which integration architecture meets a multinational marketing estate’s requirements at the lowest defensible operating cost?**
 
-This executable planner selects a cost-minimal integration configuration for a finite set of business workflows. It accounts for shared platform fees, partially filled batches, hourly bursts, total quotas, required data capabilities, permitted processing regions and declared freshness bounds. One configuration must work across every supplied scenario.
+This executable architecture workbench models **100 million source events per average month**, eight integration workloads and a full seasonal operating year. It selects routes and shared capacity, accounts for subscriptions and usage tiers, and independently checks financial arithmetic, capabilities, processing regions, freshness declarations and peak API demand.
 
-The additive **plan-to-execution assurance** layer runs those selected routes through independently observable local HTTP services. It compares the model with actual requests, durable receipts, record readback, queueing and freshness, then accepts the finite trial or requires an explicit architecture revision. Synthetic prices are never represented as real vendor expenditure.
+The enterprise scenario is synthetic. **All prices are synthetic USD planning assumptions**, not Adobe, Salesforce, Snowflake or cloud-provider prices. Representative CRM, CDP, journey, warehouse, identity and consent dependencies define the workloads; no native vendor execution is claimed.
 
-**Business impact:** Lower integration costs while protecting critical launch deadlines, data freshness and API capacity. The planner makes decisions defensible: which workflows can share a platform, which require faster routes, and when a proposed saving would compromise execution. The output includes the arithmetic and rejected alternatives a platform architect can discuss with Marketing, Web, Product Marketing and integration owners.
+## The annual architecture decision
 
-![Executed stack optimization: selected configuration, independent optimum check and capacity tradeoffs](docs/images/optimization-result.svg)
+The actual MILP solve and independent bounded enumeration produce these results from the [versioned source scenario](fixtures/enterprise/multibrand-2026.json):
 
-*Generated from the actual solve and independent checks. One configuration must satisfy normal demand and the campaign surge; cheap plans that violate constraints receive no recommendation. [Full accounting and rejected alternatives](docs/evidence/report.md).*
+| Architecture | Operating year | Disruption envelope / year | Operating monthly range |
+|---|---:|---:|---:|
+| Mixed-route reference, eight workers | USD $281,919.28 | USD $285,775.19 | USD $23,238.88–$23,874.10 |
+| Cost optimized, four workers | **USD $187,453.59** | USD $216,985.88 | USD $13,903.73–$17,824.59 |
+| Capacity resilient, four workers | USD $196,748.14 | **USD $200,608.52** | USD $16,141.09–$16,776.82 |
 
-**Start with the [executed proof](docs/evidence/report.md).** Five synthetic workflows span lead handoff, campaign suppression, attribution, web personalization and product enrichment.
+Each column compares the same workload and price book. The disruption column is an **alternative modeled year**, with 25% more source demand, 80% higher peak concentration, 10% retries and 70% of normal CRM quota; it is not added to the operating-year cost. All three configurations meet both declared envelopes. The optimized plan minimizes operating-year cost; the resilient plan minimizes worst annual cost across both envelopes.
 
-| Engineering question | Executed result |
-|---|---|
-| Does the cheapest normal-day plan survive a campaign surge? | No. Independent accounting identifies the shared quota violations |
-| What configuration satisfies both scenarios at minimum modeled cost? | Streaming for three time-sensitive workflows; bulk for two slower workflows |
-| How is the optimum checked? | Independent enumeration of all **3,125 configurations** agrees with the MILP solver |
-| Can the budget be one cent below the optimum? | No feasible plan; a named constraint conflict is retained |
-| Does shrinking capacity merely slow the same architecture? | The optimal configuration changes; at 30 CRM requests/hour, none is feasible |
+The calculated operating-year difference from the reference is **USD $94,465.69**. Choosing the resilient configuration adds **USD $9,294.55** in the operating year and reduces modeled disruption-year cost by **USD $16,377.36** relative to keeping the operating optimum. These are scenario comparisons, not realized savings or commercial results.
 
-**Verified synthetic result:** The optimal configuration costs **$7.82 versus $13.40** for the feasible all-premium reference over four hours, while satisfying modeled demand, data freshness and API capacity. Independent enumeration makes the engineering and cost tradeoff reproducible.
+[Inspect exact decisions, monthly lines and independent optimum checks](docs/evidence/enterprise/acceptance/decision.json) · [Assumptions and mathematical contract](docs/enterprise-economics.md) · [Execution evidence and limitations](docs/evidence/enterprise/README.md)
 
-## Architecture decision boundary
+![Actual enterprise console showing calculated annual alternatives, monthly costs and selected routes](docs/evidence/enterprise/browser/optimized-operating-desktop.png)
 
-### Inspect execution assurance
+[Actual mobile console](docs/evidence/enterprise/browser/optimized-operating-mobile.png) · [Screenshot provenance](docs/evidence/enterprise/browser/browser-verification.json)
 
-- [Execution results, failures and source provenance](docs/evidence/execution/README.md)
-- [HTTP contracts, independent reconciliation and decision governance](docs/execution-assurance.md)
-- [Actual normal-demand console screenshot](docs/evidence/execution/browser/normal-desktop.png)
+## Why the decision is useful
 
-The console is a real, read-only local application. It reads persisted evidence, exposes rejected outcomes and downloads the independent receiver observations. It needs no credentials or external service.
-
-<details>
-<summary>Actual console: the accepted capacity revision</summary>
-
-![Actual local console showing the revised architecture, independently observed requests and complete synthetic source coverage](docs/evidence/execution/browser/capacity-revision-desktop.png)
-
-[Screenshot provenance and browser checks](docs/evidence/execution/browser/browser-verification.json). These are recorded local results with synthetic prices, not a native vendor deployment.
-
-</details>
-
-```bash
-# Inspect the committed, recorded execution evidence after installing the package.
-python -m stack_economics.assurance.console --evidence docs/evidence/execution/acceptance/execution
-# Open http://127.0.0.1:8578/
-
-# Reproduce all tests and the finite execution suite into a NEW directory.
-python scripts/verify_assurance.py --output .local/acceptance-01
-python scripts/check_execution.py --evidence .local/acceptance-01/execution
-python scripts/package_integrity.py
-```
-
-The default experiment uses **36 real seconds per 60 modeled minutes**. Freshness deadlines use the same declared scaling. This is accelerated local contract acceptance, not a vendor benchmark, real four-hour campaign, residency certification or production capacity promise. No region, capability, deletion or freshness requirement is relaxed to make a cheaper plan pass.
-
-### Preserved mathematical core
-
-This engine solves a specific enterprise planning problem: **select the lowest-cost feasible integration configuration** under modeled API quotas, demand, freshness, capacity and capability constraints. It supports architecture decisions; it does not replace the control plane responsible for source authority, execution governance or downstream reconciliation. [Model architecture and decisions](docs/architecture.md).
+- **Source events are not API calls.** The year contains 1.2 billion source events and 1.332 billion downstream records after declared fan-out. Twelve million customers is a separate population assumption. Emission windows, partial batches and retry overhead determine requests.
+- **Shared costs change the answer.** The operating optimum uses the event fabric for all eight routes: an additional platform subscription costs more than its lower variable rate saves. Under disruption, microbatching seven workloads limits request overage; one-minute consent suppression retains streaming. The solver selects these outcomes rather than prescribing a winner.
+- **Capacity is a constraint, not a discount.** Every selected route must retain required fields, consent/deletion support, permitted regions and declared latency. Shared peak worker demand and CRM request quotas are checked per month. Sensitivities show when constrained throughput or quotas require larger tiers and when tighter freshness prevents batch routes.
+- **A modeled plan still needs execution assurance.** Separate bounded HTTP trials retain late work, rejected permissions, uncertain acknowledgments and host-dependent rejection. An inexpensive incomplete run cannot be accepted merely because it costs less.
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"background":"#10101D","primaryColor":"#2A2A3D","primaryTextColor":"#F0F0FF","primaryBorderColor":"#7C7CAF","lineColor":"#B8B8FF","textColor":"#F0F0FF","secondaryColor":"#181825","tertiaryColor":"#2E2E45","fontFamily":"IBM Plex Sans, Arial, sans-serif","fontSize":"15px","edgeLabelBackground":"#10101D"}}}%%
-flowchart TB
-    W[Workloads and business requirements] --> C[Closed input contract]
-    S[Demand scenarios and shared quotas] --> C
-    P[Synthetic route costs and service envelopes] --> C
-    C --> M[Integer model compiler]
-    M --> O[HiGHS optimizer through SciPy]
-    O --> I[Independent integer accountant]
-    I --> R[Reviewable configuration and capacity headroom]
-    O --> F[Infeasible or unresolved: no recommendation]
-    E[Exhaustive small-case oracle] --> V[Compare feasibility and optimum]
-    O --> V
-
-    classDef source fill:#181825,stroke:#7C7CAF,color:#F0F0FF,stroke-width:2px;
-    classDef foundation fill:#2A2A3D,stroke:#B8B8FF,color:#F0F0FF,stroke-width:2px;
-    classDef capability fill:#2A2A3D,stroke:#7C7CAF,color:#F0F0FF,stroke-width:2px;
-    classDef output fill:#2E2E45,stroke:#81C5B0,color:#F0F0FF,stroke-width:2px;
-    classDef alert fill:#2E2E45,stroke:#E3BC7F,color:#F0F0FF,stroke-width:2px;
-
-    class W,S,P,E source;
-    class C foundation;
-    class M,O,I,V capability;
-    class R output;
-    class F alert;
+flowchart LR
+    A[Versioned annual demand and business requirements] --> B[Routes, shared subscriptions and capacity tiers]
+    B --> C[Annual integer optimizer]
+    C --> D[Independent accountant and bounded oracle]
+    D --> E[Read-only architecture decision console]
+    F[Separate bounded HTTP execution] --> G[Independent journals and recovery reconciliation]
+    G --> E
 ```
 
-The evidence figure is a static projection of the linked JSON, not an application screenshot. Regenerate it with `python docs/images/render.py` after the corresponding evaluation or planning evidence is refreshed.
+## Run and inspect
 
-## Run it
-
-Use Python **3.12**, from the extracted repository root:
+Python **3.12**; no cloud account, API key, model endpoint or Docker engine is required for the reproducible core.
 
 ```bash
 python -m venv .venv
-# Activate .venv for your shell.
+# Activate .venv using your shell.
 python -m pip install -r requirements.lock
 python -m pip install --no-deps --no-build-isolation -e .
-python scripts/verify.py --output .local/math-verification-01
+
+# Open the current enterprise decision view; recorded HTTP trials remain at /execution.
+python -m stack_economics.enterprise.console
+# http://127.0.0.1:8578/
+
+# Recompute the annual alternatives, independent optimum checks and sensitivities.
+python scripts/enterprise_verify.py --check docs/evidence/enterprise/acceptance
+python scripts/enterprise_verify.py --output .local/enterprise-01
+
+# Full regression, original oracle, real HTTP trials and enterprise verification.
+# Use a NEW directory; evidence is not overwritten. This finite suite takes several minutes.
+python scripts/verify_assurance.py --output .local/acceptance-01
+python scripts/package_integrity.py
+python scripts/audit_public.py
 ```
 
-Verification runs lint, dependency checks, automated tests, independent optimum comparisons and the asserted demonstration, then regenerates source-bound evidence. No API key, model download, cloud account, external database service or Docker engine is needed.
+[Browser verification commands](docs/enterprise-economics.md#browser-verification) · [HTTP and recovery contracts](docs/execution-assurance.md) · [Original CLI operations](docs/operations.md)
 
-For an individual decision:
+## Evidence boundaries
 
-```bash
-stack-economics solve fixtures/campaign-launch.json --output work/plan.json
-stack-economics check fixtures/campaign-launch.json --plan work/plan.json --output work/check.json
-```
+| Category | What is established | What is not established |
+|---|---|---|
+| Enterprise modeled | Annual costs, monthly billing, route eligibility, hourly capacity, budget and independently checked finite optimum | Measured enterprise throughput, vendor SLA, real negotiated prices or commercial savings |
+| Bounded executed | Actual independent local HTTP processes, durable intent, receipts, retries, exact readback and freshness decisions | Native Salesforce/Adobe/Snowflake integration or a 100-million-event load test |
+| Projection | Explicit input sensitivity and conditional architecture decisions | A measured scale factor converting local timings into production capacity |
 
-`check` recomputes feasibility and accounting and rejects changed assumptions or implementation. It does **not** independently reprove a saved plan's optimality. `solve` establishes the solver optimum and checks the selected configuration independently. [Commands and exit codes](docs/operations.md).
+The hourly model assumes balanced emission within each hour and a 20% worker reserve. Declared route lag is an input; intra-hour queue tails, arbitrary synchronized bursts, strict rolling arrival limits and residency certification are outside the mathematical proof. [Full assumptions, units and exclusions](docs/enterprise-economics.md).
 
-## What is implemented and verified
+## Preserved small-scale validation
 
-- **Joint configuration selection:** shared fixed fees are charged once per enabled platform, not once per workflow. Choices cannot change between scenarios.
-- **Integer request accounting:** a partial batch consumes a whole request; zero records consume no requests. Hourly and total quotas are both enforced.
-- **Hard business constraints:** price cannot override required deletion/field support, permitted regions or freshness bounds.
-- **Bounded failure behavior:** infeasible, solver-limited, solver-error and independently rejected results contain no recommendation. Infeasibility explanations distinguish a fully reduced conflict from an unfinished reduction.
-- **Independent checks:** a separate integer accountant never imports the compiler; exhaustive enumeration and randomized cases compare feasibility and global cost, not just a solver success flag.
-- **Evidence preservation:** the demo retains overloaded and lossy cheap plans, input assumptions, resource headroom, cost lines, capacity tradeoffs and infeasible results.
+The original five-workflow, four-hour fixture remains unchanged: **USD $7.82** modeled optimum versus **USD $13.40** all-premium reference, independently enumerated across **3,125 configurations**. Its actual accepted local architecture revision cost **USD $12.36** for 56,700 synthetic operations. The recorded slower Windows outcome remains rejected.
 
-Python makes the input and accounting readable. SciPy's HiGHS-backed mixed-integer solver handles the coupled discrete choices; it is appropriate where sorting routes by price fails because shared fees and quotas interact. [Architecture and mathematical contract](docs/architecture.md).
+These figures are a bounded technical validation, separate from the enterprise annual scenario. Original optimizer behavior, regression tests, pricing, historical failures, source evidence and license are protected byte-for-byte by the package checks.
 
-## Architecture scope and operating assumptions
-
-This is an independent, synthetic **offline planning system**. Route capability and latency declarations are inputs, not executed vendor integrations or measured service guarantees. Capacity is modeled per hour and per horizon; within-hour queues, network timing, live scheduling, probabilistic demand and unmodeled outages are outside the proof. No campaign is sent and no procurement action is taken.
-
-The original executed verification used local Windows, Python, NumPy and SciPy. [GitHub Actions verification passed on Ubuntu and Windows](https://github.com/rlbsem/martech-stack-economics/actions/runs/38501653389), exercising the solver, independent accountant, exhaustive oracle, failure tests and CLI checks. Those CI results verify the synthetic planning workflow, not external vendor performance.
-
-[Actual validation and limitations](docs/validation.md) · [Generated test/environment record](docs/evidence/verification.json) · [Technical verification record](docs/handoff.md)
+[Original mathematical proof](docs/evidence/report.md) · [Recorded execution, rejected trials and source revisions](docs/evidence/execution/README.md) · [Original architecture](docs/architecture.md) · [Original validation](docs/validation.md)
