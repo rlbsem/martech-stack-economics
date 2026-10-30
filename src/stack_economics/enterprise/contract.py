@@ -79,11 +79,25 @@ def validate(value):
             for key in ('lag_minutes', 'event_cents_per_1000', 'request_cents_per_1000',
                         'warehouse_cents_per_tib', 'egress_cents_per_gib', 'crm_calls_per_request'):
                 integer(o[key], 0, 10000)
-            if o['lag_minutes'] < 1 or o['lag_minutes'] > 1440 or 1440 % o['lag_minutes']:
-                raise Invalid('emission_interval_must_divide_day')
+            if o['lag_minutes'] < 1 or o['lag_minutes'] > 60 or 60 % o['lag_minutes']:
+                raise Invalid('emission_interval_must_divide_hour')
             identity(o['region'])
             for cap in o['capabilities']:
                 identity(cap)
+        for c in value['conditions']:
+            for m in value['months']:
+                share = w['peak_hour_ppm'] * c['peak_percent'] * m['days']
+                if share > 100_000_000 or share * 24 < 100_000_000:
+                    raise Invalid('inconsistent_daily_peak_profile')
+    # Conservative coefficient guard: preserve exact integer arithmetic through the float MILP interface.
+    maximum = 0
+    for w in value['workloads']:
+        records = ((w['source_events_month'] * max(m['demand_percent'] for m in value['months'])
+                    * max(c['demand_percent'] for c in value['conditions']) + 9999) // 10000
+                   * w['downstream_multiplier'])
+        maximum += records * 2 * max(o['work_units_per_request'] for o in w['options']) * 100
+    if maximum >= 2**50:
+        raise Invalid('arithmetic_envelope_exceeded')
     shape(value['reference'], 'tier routes')
     if value['reference']['tier'] not in {t['id'] for t in value['tiers']}:
         raise Invalid('unknown_reference_tier')

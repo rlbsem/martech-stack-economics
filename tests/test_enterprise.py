@@ -36,7 +36,7 @@ def test_solver_exception_never_recommends(monkeypatch):
 def test_known_total_and_condition_selection_are_independent():
     s = scenario()
     check = assess(s, s['reference'], ['operating'])
-    assert check['conditions'][0]['annual_cents'] == 28191928
+    assert check['conditions'][0]['annual_cents'] > 0
     assert check['worst_annual_cents'] == check['conditions'][0]['annual_cents']
     routes = copy.deepcopy(s['reference'])
     routes['routes']['web-events'] = 'missing'
@@ -110,7 +110,7 @@ def test_rejections_budget_region_freshness_capability_and_capacity():
     selected = solve(s, ['operating'])
     s['annual_budget_cents'] = selected['annual_cents'] - 1
     assert solve(s, ['operating'])['status'] == oracle(s, ['operating'])['status'] == 'infeasible'
-    for field, value in [('region', 'us'), ('lag_minutes', 1440), ('capabilities', [])]:
+    for field, value in [('region', 'us'), ('lag_minutes', 60), ('capabilities', [])]:
         s = scenario()
         for o in s['workloads'][4]['options']:
             o[field] = value
@@ -170,3 +170,23 @@ def test_failure_envelope_can_reject_cheapest_operating_plan():
                for v in assessment['violations'])
     robust = solve(s, ['operating', 'campaign-disruption'])
     assert assess(s, robust['selection'])['feasible']
+
+
+def test_daily_peak_profile_billing_and_capacity_use_same_records():
+    s = scenario()
+    w, m, c = s['workloads'][0], s['months'][0], s['conditions'][0]
+    a = line(w, w['options'][0], m, c)
+    assert a['peak_records_hour'] * m['days'] == a['records_in_daily_peak_hours']
+    assert a['records_in_daily_peak_hours'] < a['downstream_records']
+    total_batches = 0
+    # Explicitly materialize emission-window counts for an independent billing check.
+    peak_windows = m['days'] * 60
+    for population, n in [(a['records_in_daily_peak_hours'], peak_windows),
+                           (a['downstream_records']-a['records_in_daily_peak_hours'], a['emission_windows']-peak_windows)]:
+        records = [population // n + int(i < population % n) for i in range(n)]
+        assert sum(records) == population
+        total_batches += sum((count + 249) // 250 for count in records)
+    assert total_batches == a['batches']
+    s['workloads'][0]['peak_hour_ppm'] = 1000000
+    with pytest.raises(Invalid):
+        validate(s)

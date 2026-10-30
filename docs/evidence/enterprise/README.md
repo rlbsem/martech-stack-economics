@@ -12,7 +12,7 @@ This directory adds an annual modeled decision to the preserved [bounded HTTP ex
 
 The model computes an average 100M monthly source-event scenario; no 100M-event HTTP workload was executed. Its annual costs are **synthetic USD assumptions**, not native vendor pricing or demonstrated client savings. The three alternatives are assessed against identical monthly demand and prices. Disruption is an alternative year, not an extra charge added to normal operations.
 
-The operating optimum is USD $187,453.59 annually. The mixed reference is USD $281,919.28. The resilient minimax choice costs USD $196,748.14 during normal operations and USD $200,608.52 under disruption. All three satisfy the original declared envelopes. More severe constrained-quota/throughput inputs produce different tiers; budget and route-requirement violations can produce infeasibility. We do not invent a failed base scenario to make the resilient choice look mandatory.
+The operating optimum is USD $187,589.95 annually. The mixed reference is USD $281,923.23. The resilient minimax choice costs USD $196,752.09 during normal operations and USD $200,630.45 under disruption. All three satisfy the original declared envelopes. More severe constrained-quota/throughput inputs produce different tiers; budget and route-requirement violations can produce infeasibility. We do not invent a failed base scenario to make the resilient choice look mandatory.
 
 Hourly capacity, emission intervals and route latency are input assumptions. The worker reserve and balanced-arrival model do not prove burst queue latency, residency or strict receiver-arrival rate guarantees. No measured extrapolation joins these values to the separate local HTTP timings.
 

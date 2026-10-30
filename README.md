@@ -14,13 +14,13 @@ The actual MILP solve and independent bounded enumeration produce these results 
 
 | Architecture | Operating year | Disruption envelope / year | Operating monthly range |
 |---|---:|---:|---:|
-| Mixed-route reference, eight workers | USD $281,919.28 | USD $285,775.19 | USD $23,238.88–$23,874.10 |
-| Cost optimized, four workers | **USD $187,453.59** | USD $216,985.88 | USD $13,903.73–$17,824.59 |
-| Capacity resilient, four workers | USD $196,748.14 | **USD $200,608.52** | USD $16,141.09–$16,776.82 |
+| Mixed-route reference, eight workers | USD $281,923.23 | USD $285,797.16 | USD $23,238.70–$23,875.20 |
+| Cost optimized, four workers | **USD $187,589.95** | USD $219,506.17 | USD $13,762.53–$17,900.25 |
+| Capacity resilient, four workers | USD $196,752.09 | **USD $200,630.45** | USD $16,140.91–$16,777.92 |
 
 Each column compares the same workload and price book. The disruption column is an **alternative modeled year**, with 25% more source demand, 80% higher peak concentration, 10% retries and 70% of normal CRM quota; it is not added to the operating-year cost. All three configurations meet both declared envelopes. The optimized plan minimizes operating-year cost; the resilient plan minimizes worst annual cost across both envelopes.
 
-The calculated operating-year difference from the reference is **USD $94,465.69**. Choosing the resilient configuration adds **USD $9,294.55** in the operating year and reduces modeled disruption-year cost by **USD $16,377.36** relative to keeping the operating optimum. These are scenario comparisons, not realized savings or commercial results.
+The calculated operating-year difference from the reference is **USD $94,333.28**. Choosing the resilient configuration adds **USD $9,162.14** in the operating year and reduces modeled disruption-year cost by **USD $18,875.72** relative to keeping the operating optimum. These are scenario comparisons, not realized savings or commercial results.
 
 [Inspect exact decisions, monthly lines and independent optimum checks](docs/evidence/enterprise/acceptance/decision.json) · [Assumptions and mathematical contract](docs/enterprise-economics.md) · [Execution evidence and limitations](docs/evidence/enterprise/README.md)
 

@@ -18,12 +18,15 @@ def coefficients(w, o, month, condition):
     source = up(w['source_events_month'] * month['demand_percent'] * condition['demand_percent'], 10000)
     records = source * w['downstream_multiplier']
     windows = month['days'] * 1440 // max(1, o['lag_minutes'])
-    lower = records // windows
-    extra = records % windows
-    requests = (windows - extra) * up(lower, o['batch_size']) + extra * up(lower + 1, o['batch_size'])
-    requests += up(requests * condition['retry_percent'], 100)
-    peak = up(records * w['peak_hour_ppm'] * condition['peak_percent'], 100_000_000)
     intervals = max(1, 60 // max(1, o['lag_minutes']))
+    peak_total = min(records, up(records * w['peak_hour_ppm'] * condition['peak_percent'], 100_000_000) * month['days'])
+    peak_count = intervals * month['days']
+    def rounded_population(population, count):
+        lower, extra = population // count, population % count
+        return (count - extra) * up(lower, o['batch_size']) + extra * up(lower + 1, o['batch_size'])
+    requests = rounded_population(peak_total, peak_count) + rounded_population(records - peak_total, windows - peak_count)
+    requests += up(requests * condition['retry_percent'], 100)
+    peak = up(peak_total, month['days'])
     residual = peak % intervals
     base = peak // intervals
     peak = (intervals - residual) * up(base, o['batch_size']) + residual * up(base + 1, o['batch_size'])

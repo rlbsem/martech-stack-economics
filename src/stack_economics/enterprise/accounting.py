@@ -15,13 +15,20 @@ def line(workload, route, month, condition):
     source = ceiling(workload['source_events_month'] * month['demand_percent'] * condition['demand_percent'], 10000)
     records = source * workload['downstream_multiplier']
     windows = month['days'] * 1440 // max(1, route['lag_minutes'])
-    whole, remainder = divmod(records, windows)
-    batches = (windows - remainder) * ceiling(whole, route['batch_size'])
-    batches += remainder * ceiling(whole + 1, route['batch_size'])
+    peak_windows_hour = 60 // route['lag_minutes']
+    declared_peak = ceiling(records * workload['peak_hour_ppm'] * condition['peak_percent'], 100_000_000)
+    peak_records_month = min(records, declared_peak * month['days'])
+    peak_windows_month = peak_windows_hour * month['days']
+    batches = 0
+    for population, count in [(peak_records_month, peak_windows_month),
+                              (records - peak_records_month, windows - peak_windows_month)]:
+        whole, remainder = divmod(population, count)
+        batches += (count - remainder) * ceiling(whole, route['batch_size'])
+        batches += remainder * ceiling(whole + 1, route['batch_size'])
     retries = ceiling(batches * condition['retry_percent'], 100)
     attempts = batches + retries
-    peak_records = ceiling(records * workload['peak_hour_ppm'] * condition['peak_percent'], 100_000_000)
-    peak_windows = max(1, 60 // max(1, route['lag_minutes']))
+    peak_records = ceiling(peak_records_month, month['days'])
+    peak_windows = peak_windows_hour
     peak_low, peak_extra = divmod(peak_records, peak_windows)
     peak_batches = ((peak_windows - peak_extra) * ceiling(peak_low, route['batch_size'])
                     + peak_extra * ceiling(peak_low + 1, route['batch_size']))
@@ -33,6 +40,7 @@ def line(workload, route, month, condition):
              'warehouse': ceiling(payload * route['warehouse_cents_per_tib'], 2**40)}
     return {'workload': workload['id'], 'route': route['id'], 'platform': route['platform'],
             'source_events': source, 'downstream_records': records, 'payload_bytes': payload,
+            'records_in_daily_peak_hours': peak_records_month, 'peak_records_hour': peak_records,
             'emission_windows': windows, 'batches': batches, 'retry_requests': retries, 'attempts': attempts,
             'peak_attempts_hour': peak_attempts, 'crm_peak_calls_hour': peak_attempts * route['crm_calls_per_request'],
             'work_peak_units_hour': peak_attempts * route['work_units_per_request'],
