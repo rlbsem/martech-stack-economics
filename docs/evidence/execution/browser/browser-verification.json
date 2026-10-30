@@ -1,0 +1,295 @@
+{
+  "ui_source_commit": "20ddc3de4a05bf806a33c301a94051563e776662",
+  "ui_files_sha256": {
+    "app.js": "7e2d2d0e1184cb647001a15216609d0e7341a17557c7971109a71c4bc6c33b25",
+    "index.html": "5a46e323b00aaad5dd12aba086cb515d017d4e355cdd38abf1d48c26290a1757",
+    "style.css": "5f3c1137a4ea6bc35c4c35cb9c09c23e61564dece3c653ed087be80215cdd093"
+  },
+  "source_commit": "e041863f416af3289e8dfa4a94956ae975aed164",
+  "summary_sha256": "284bdf9beb1ece0c69eafef3e82b7b494552cf22f09860146662e87b89fe68a7",
+  "chromium": "141.0.7390.37",
+  "axe_version": "4.11.0",
+  "axe_sha256": "e9e5863c33a874f09bc01acd9234b7e3c871479f5eef8802fa582544465e6d01",
+  "states": [
+    {
+      "viewport": "desktop",
+      "trial": "normal",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 26,
+      "download_verified": true
+    },
+    {
+      "viewport": "desktop",
+      "trial": "normal",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "desktop",
+      "trial": "launch-surge",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 26,
+      "download_verified": true
+    },
+    {
+      "viewport": "desktop",
+      "trial": "launch-surge",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "desktop",
+      "trial": "transient-recovery",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 26,
+      "download_verified": true
+    },
+    {
+      "viewport": "desktop",
+      "trial": "transient-recovery",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "desktop",
+      "trial": "delayed-source",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 26,
+      "download_verified": true
+    },
+    {
+      "viewport": "desktop",
+      "trial": "delayed-source",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "desktop",
+      "trial": "slow-destination",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 26,
+      "download_verified": true
+    },
+    {
+      "viewport": "desktop",
+      "trial": "slow-destination",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "desktop",
+      "trial": "shared-quota-pressure",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 26,
+      "download_verified": true
+    },
+    {
+      "viewport": "desktop",
+      "trial": "shared-quota-pressure",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "desktop",
+      "trial": "revoked-permission",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 26,
+      "download_verified": true
+    },
+    {
+      "viewport": "desktop",
+      "trial": "revoked-permission",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "desktop",
+      "trial": "capacity-revision",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 26,
+      "download_verified": true
+    },
+    {
+      "viewport": "desktop",
+      "trial": "capacity-revision",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "desktop",
+      "trial": "capacity-blocked",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 26,
+      "download_verified": false
+    },
+    {
+      "viewport": "desktop",
+      "trial": "capacity-blocked",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "mobile",
+      "trial": "normal",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 27,
+      "download_verified": true
+    },
+    {
+      "viewport": "mobile",
+      "trial": "normal",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "mobile",
+      "trial": "launch-surge",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 27,
+      "download_verified": true
+    },
+    {
+      "viewport": "mobile",
+      "trial": "launch-surge",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "mobile",
+      "trial": "transient-recovery",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 27,
+      "download_verified": true
+    },
+    {
+      "viewport": "mobile",
+      "trial": "transient-recovery",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "mobile",
+      "trial": "delayed-source",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 27,
+      "download_verified": true
+    },
+    {
+      "viewport": "mobile",
+      "trial": "delayed-source",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "mobile",
+      "trial": "slow-destination",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 27,
+      "download_verified": true
+    },
+    {
+      "viewport": "mobile",
+      "trial": "slow-destination",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "mobile",
+      "trial": "shared-quota-pressure",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 27,
+      "download_verified": true
+    },
+    {
+      "viewport": "mobile",
+      "trial": "shared-quota-pressure",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "mobile",
+      "trial": "revoked-permission",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 27,
+      "download_verified": true
+    },
+    {
+      "viewport": "mobile",
+      "trial": "revoked-permission",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "mobile",
+      "trial": "capacity-revision",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 27,
+      "download_verified": true
+    },
+    {
+      "viewport": "mobile",
+      "trial": "capacity-revision",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    },
+    {
+      "viewport": "mobile",
+      "trial": "capacity-blocked",
+      "violations": 0,
+      "state": "collapsed",
+      "axe_passes": 27,
+      "download_verified": false
+    },
+    {
+      "viewport": "mobile",
+      "trial": "capacity-blocked",
+      "state": "expanded",
+      "violations": 0,
+      "axe_passes": 27
+    }
+  ],
+  "page_errors": [],
+  "screenshots_sha256": {
+    "normal-desktop.png": "8872f05ae36b15b14001cc4d7423dcca401020ab1be185251798333a82482e45",
+    "launch-surge-desktop.png": "39f378f6d1300f846298445ee21dfc50cda5e0982c74cf2fea5a3279b899d12b",
+    "shared-quota-pressure-desktop.png": "e670359cee1452be07deced4ee8db7dc89443249a0e09e802b4b120d8bc064d4",
+    "capacity-revision-desktop.png": "eca32e05cd5dbab10ba5a5544309fae22f1a879bb8a7651479a1606b5a263a42",
+    "normal-mobile.png": "25ced7213f17f84d55a93f493c2b4c3b27be0f6070f39d1d2efe614efde4b207",
+    "capacity-blocked-mobile.png": "ca0cef5f237de6cd4225c38419dcd92b187f34f900735c7409dc895e9329bd0a"
+  },
+  "boundary": "Actual loopback UI, recorded synthetic HTTP trials; no deployment or vendor execution"
+}

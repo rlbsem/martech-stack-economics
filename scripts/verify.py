@@ -1,3 +1,4 @@
+import argparse
 import hashlib
 import importlib.metadata
 import json
@@ -25,7 +26,9 @@ def manifest():
 
 def main():
     began = time.monotonic()
-    output = ROOT / "docs/evidence"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, default=ROOT / "docs/evidence")
+    output = parser.parse_args().output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     work = ROOT / "work/verification" / uuid4().hex
     work.mkdir(parents=True)
@@ -40,7 +43,7 @@ def main():
     execute("-m", "pip", "check")
     execute("-m", "pytest", "-q", "--basetemp", str(work / "tests"), "-o", "cache_dir=" + str(work / "cache"),
             "--junitxml", str(output / "tests.xml"))
-    execute("scripts/demo.py")
+    execute("scripts/demo.py", "--output", str(output))
     # Exercise the installed module as a real subprocess, including argument parsing and exit code.
     execute("-m", "stack_economics.cli", "solve", "fixtures/campaign-launch.json", "--output", str(work / "plan.json"))
     execute("-m", "stack_economics.cli", "check", "fixtures/campaign-launch.json", "--plan", str(work / "plan.json"),

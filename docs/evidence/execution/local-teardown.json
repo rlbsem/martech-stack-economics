@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-10-29T17:16:18.095711+00:00",
+  "receiver_ports_checked": 24,
+  "still_accepting": [],
+  "boundary": "Independent local TCP checks after service-process teardown; no AWS/cloud or billing activity",
+  "receiver_processes_remaining": 0
+}

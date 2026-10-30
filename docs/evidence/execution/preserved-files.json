@@ -1,0 +1,27 @@
+{
+  "baseline": "c5944464c8711ee2c8bb510226c25b5f8dbb56ac",
+  "files": {
+    "LICENSE": "1819462f2e141f8a0f1371c5191ad9ceffe1455611b2d2359674485cb7c3a8c5",
+    "docs/evidence/build.json": "7a4f2e222399594e6e11872b53d8987ffb62734aa77f3fb8999de34dd4b491b5",
+    "docs/evidence/planning-proof.json": "261a9b3de48cb1fd67f31a15579f987d5e0eff43288d0c7a690ac4c138aab3b0",
+    "docs/evidence/recommended-plan.json": "acf4ab43cf49d4993ddf0e57390f2c057f9a086bda62ec88293cbca70b3b5c53",
+    "docs/evidence/reference-selection.json": "3c3d9637d00321b8940249abf6e95a67e859555bcb4e71f8a503d96ed941c198",
+    "docs/evidence/report.md": "0ffd69e757143c0100954cf8bc3407ee601d168357d7577ef7ff840d1b50ca87",
+    "docs/evidence/tests.xml": "f9baf5c0f8321ceab8516f465d14bae91472bcede49b2911c65225513a676ce2",
+    "docs/evidence/verification.json": "073cbf42cc95cc6eda9e8efc30240fb74b21d575bee710b4e622c3b6dbd61842",
+    "docs/images/optimization-result.svg": "6af369c7d67459d4c5dafdf7ce3b203624c021709daeea517ebc0226dc3f7b7c",
+    "docs/images/render.py": "3b176fb0970aae37ccf75414fa8851ddcff30d9fbcd5749aeb4b485304b98cd5",
+    "fixtures/campaign-launch.json": "232f077ef976376aafe8c09c86b0fcc0f55d49fa542ad6cfce297a6cb9ca7586",
+    "src/stack_economics/__init__.py": "931db4d9867913f64cc213aa0a42991ce7156cf5d39471790d58747925428638",
+    "src/stack_economics/accounting.py": "ff0fdfce873216ca934855b8f0f67ebdf606fe326b647e1ecd1233d1e0e317c5",
+    "src/stack_economics/cli.py": "fe9820f4626d74a536e43c06061a2f5966bdff72480573a3b13478e33feda8a4",
+    "src/stack_economics/contracts.py": "165de0eb6d58ccc9f73e695e27bd0b07cd98efd09f2c1901c43b4cc41a1e050b",
+    "src/stack_economics/demo.py": "25b3eac0224b8ad5db13be961522fdc53b51219a350373b00e4c54ae7018afa5",
+    "src/stack_economics/fixtures.py": "9d22fdcfd13b1fdbb118b1aed55db1a1b8ba5289ac8048061391639cd1d3243f",
+    "src/stack_economics/model.py": "5b94d9726def4e7cbb245ba331b9d356df684ee1da155c0ab5fddb5427884af8",
+    "src/stack_economics/planner.py": "a3e56138bd7900f28660b2cd217afbbe95810484094d7293d288734af08ae0d7",
+    "tests/conftest.py": "08ffb2042f6d7016384b2540ce4a68b1e4a9281c53d312413de5ed786e951c12",
+    "tests/test_failures.py": "a7ce8d0430106c361b8c202a48e61a74f0ef2dad182a29ae9a682eb306f65549",
+    "tests/test_planning.py": "43f08d8719360d02843d4fdb6582b7aee3762d3bd4973442be1fdc49ca13c2b5"
+  }
+}
