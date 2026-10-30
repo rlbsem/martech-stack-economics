@@ -1,0 +1,406 @@
+{
+  "ui_source_commit": "e1f0fed6c313e84385af1f838e30debefd5400e6",
+  "ui_sha256": {
+    "app.js": "6e41ee8ed17cb9683c3d9bb9da81e4d5de1d5db3434b4804f8c3972ee75661f1",
+    "index.html": "b141a69381857cd8104d8c29462ffb968d311b4403c8c42b1d12223c627e0b58",
+    "style.css": "96bd5c21e08553d332b1348f96a954fc67d9442d71318d6a43e67ef181cd3541"
+  },
+  "decision_sha256": "9487f3b1447c891894133e10a162af2068f1dc0faef026fd00df271be82e9aeb",
+  "evidence_source_commit": "e1f0fed6c313e84385af1f838e30debefd5400e6",
+  "chromium": "141.0.7390.37",
+  "axe_version": "4.11.0",
+  "axe_sha256": "e9e5863c33a874f09bc01acd9234b7e3c871479f5eef8802fa582544465e6d01",
+  "states": [
+    {
+      "viewport": "desktop",
+      "architecture": "reference",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "reference",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "reference",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "reference",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "reference",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "reference",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "reference",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "reference",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "optimized",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "optimized",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "optimized",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "optimized",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "optimized",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "optimized",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "optimized",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "optimized",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "resilient",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "resilient",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "resilient",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "resilient",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "resilient",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "resilient",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "resilient",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "desktop",
+      "architecture": "resilient",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "reference",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "reference",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "reference",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "reference",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "reference",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "reference",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "reference",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "reference",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "optimized",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "optimized",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "optimized",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "optimized",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "optimized",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "optimized",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "optimized",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "optimized",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "resilient",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "resilient",
+      "condition": "operating",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "resilient",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "resilient",
+      "condition": "operating",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "resilient",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "resilient",
+      "condition": "campaign-disruption",
+      "month": "2026-01",
+      "expanded": true,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "resilient",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": false,
+      "axe_violations": 0
+    },
+    {
+      "viewport": "mobile",
+      "architecture": "resilient",
+      "condition": "campaign-disruption",
+      "month": "2026-11",
+      "expanded": true,
+      "axe_violations": 0
+    }
+  ],
+  "screenshots_sha256": {
+    "optimized-operating-desktop.png": "2191975b7c6db4ae75977b114fb174bd5ab45edb05ca341bde9c380ce8ffd5ea",
+    "resilient-campaign-disruption-desktop.png": "5b63f56f07df2d4e552fa598645018536b04f5e091247eb7fabf1bb60978a483",
+    "optimized-operating-mobile.png": "a0050ac70a046fefea2f4e4f1e8d512b91bf2d8389cc8c331d505bbc75fd06ed"
+  },
+  "page_errors": [],
+  "boundary": "Actual rendered read-only local console; all enterprise financial values are modeled."
+}

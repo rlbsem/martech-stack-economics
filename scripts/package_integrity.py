@@ -19,7 +19,9 @@ def previous_execution():
     for name in names:
         expected = subprocess.check_output(['git', 'rev-parse', UPGRADE_BASE + ':' + name], cwd=ROOT, text=True).strip()
         actual = subprocess.check_output(['git', 'hash-object', '--path', name, name], cwd=ROOT, text=True).strip()
-        assert actual == expected, 'Prior execution implementation/evidence changed: ' + name
+        original = subprocess.check_output(['git', 'show', UPGRADE_BASE + ':' + name], cwd=ROOT)
+        assert (ROOT / name).read_bytes() == original or actual == expected, \
+            'Prior execution implementation/evidence changed: ' + name
     return {'source_revision': subprocess.check_output(['git', 'rev-parse', UPGRADE_BASE], cwd=ROOT, text=True).strip(),
             'files': len(names), 'boundary': 'All original source, tests, fixtures, evidence, images and license unchanged'}
 
@@ -55,7 +57,7 @@ def public_bytes(path):
         return previous.stdout
     # New/changed repository text is normalized by the ordinary Git text filter.
     if path.suffix in {'.py', '.md', '.json', '.xml', '.svg', '.txt', '.yml', '.toml', '.lock', '.html', '.css', '.js'} \
-            or path.name in {'LICENSE', '.gitignore', 'Dockerfile.assurance'}:
+            or path.name in {'LICENSE', '.gitignore', '.gitattributes', 'Dockerfile.assurance'}:
         return raw.replace(b'\r\n', b'\n')
     return raw
 
