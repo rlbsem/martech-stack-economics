@@ -1,0 +1,27 @@
+{
+  "verification_passed": true,
+  "source_commit": "e1f0fed6c313e84385af1f838e30debefd5400e6",
+  "source_committed": true,
+  "executed_at": "2026-10-30T22:04:38.877900+00:00",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "source_sha256": {
+    "src/stack_economics/enterprise/__init__.py": "b6a9b9f084e7ce16a75f912b45d8b89a0b7d347731798d148a765b75ee8a16fa",
+    "src/stack_economics/enterprise/accounting.py": "0b42d6e4f5bc09b4a3e123d4baa1861f271d12f7772dea9e081ba690512af7ed",
+    "src/stack_economics/enterprise/console.py": "9da8edb1b7740cd459bc354357d0edde551efcd3635488843c277a433882bd9a",
+    "src/stack_economics/enterprise/contract.py": "444fdbbad95c1ad782b42df5e10a109bba6df7a2aab1bf015deca9d78d96e6fc",
+    "src/stack_economics/enterprise/fixture.py": "b271b3c97fbdbfbdd6fb4a54b0a5f787c83e283b9890fe662ef183fbcf2e5f22",
+    "src/stack_economics/enterprise/planning.py": "4882cfc7a98e1c19b049b1148db902f6be55e90c086e0a782fe1ba9c5063f990",
+    "src/stack_economics/enterprise/report.py": "295af1e17ab926f99a1e2f593dbb79f24ea41d5b060071fba67ffe7f738faf5c",
+    "src/stack_economics/enterprise/web/app.js": "6e41ee8ed17cb9683c3d9bb9da81e4d5de1d5db3434b4804f8c3972ee75661f1",
+    "src/stack_economics/enterprise/web/index.html": "b141a69381857cd8104d8c29462ffb968d311b4403c8c42b1d12223c627e0b58",
+    "src/stack_economics/enterprise/web/style.css": "96bd5c21e08553d332b1348f96a954fc67d9442d71318d6a43e67ef181cd3541",
+    "fixtures/enterprise/multibrand-2026.json": "8c38a09406011a16e0d89fb528de0f4e1b27f7eb432ddd34df3f9aba35d04de6",
+    "scripts/enterprise_verify.py": "38c46f2222777bd60f21e669638cba99be8dceb64b620c90ebc5fe4b30b99efe",
+    "scripts/enterprise_browser.py": "4cf77b69da73b777c884336e94dd2c07f3ab4ce34920a45b4376f4c4f3cbbc74",
+    "tests/test_enterprise.py": "fa62ba50d3359dbeb30c68c047d93be5ac05a161d677862b9537788a357148f2"
+  },
+  "decision_sha256": "178795baa900f4274e55b21303cdc2d9a0a40b8d0ad64ff713f8b58546673445",
+  "comparisons": 25,
+  "boundary": "Actual MILP and independently enumerated synthetic financial planning; no vendor calls."
+}

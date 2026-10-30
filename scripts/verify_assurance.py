@@ -59,6 +59,7 @@ def main():
     assert {t['name'] for t in trials} == required, 'Missing or unexpected experiment'
     execute('scripts/financial_audit.py', '--evidence', str(output / 'execution'),
             '--output', str(output / 'financial-audit.json'))
+    execute('scripts/enterprise_verify.py', '--output', str(output / 'enterprise'))
     assert before == sources(), 'Execution source changed during acceptance'
     head = (subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
             if (ROOT / '.git').exists() else os.environ['STACK_ECONOMICS_SOURCE_COMMIT'])
