@@ -3,3 +3,6 @@
 /fixtures/enterprise/** text eol=lf
 /scripts/enterprise*.py text eol=lf
 /tests/test_enterprise.py text eol=lf
+# Retain the exact bytes served/captured in new evidence, including recorded download hashes.
+/docs/evidence/enterprise/** -text
+.gitattributes text eol=lf
