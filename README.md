@@ -36,6 +36,7 @@ The calculated operating-year difference from the reference is **USD $94,333.28*
 - **A modeled plan still needs execution assurance.** Separate bounded HTTP trials retain late work, rejected permissions, uncertain acknowledgments and host-dependent rejection. An inexpensive incomplete run cannot be accepted merely because it costs less.
 
 ```mermaid
+%%{init: {"theme":"base","themeVariables":{"background":"#10101D","primaryColor":"#2A2A3D","primaryTextColor":"#F0F0FF","primaryBorderColor":"#7C7CAF","lineColor":"#B8B8FF","textColor":"#F0F0FF","secondaryColor":"#181825","tertiaryColor":"#2E2E45","fontFamily":"IBM Plex Sans, Arial, sans-serif","fontSize":"15px","edgeLabelBackground":"#10101D"}}}%%
 flowchart LR
     A[Versioned annual demand and business requirements] --> B[Routes, shared subscriptions and capacity tiers]
     B --> C[Annual integer optimizer]
