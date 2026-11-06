@@ -1,4 +1,4 @@
-# Architecture decision — integration cost and capacity
+# Architecture decision: integration cost and capacity
 
 This planning engine answers a bounded technical question: **Which integration routes satisfy declared demand, freshness, shared API budgets, regional restrictions and required capabilities at the lowest modeled cost?**
 
