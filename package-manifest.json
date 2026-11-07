@@ -3,7 +3,7 @@
   "sha256": {
     ".dockerignore": "d56032ffad3179be7ad9b50acb8f6f677b4a8263ed7f924568b729af169a6a71",
     ".gitattributes": "4b60534503a47a7018496c1721647c27853791bef71e26f3cd829940dbdf45f7",
-    ".github/workflows/verify.yml": "78febcb54cc016bb90296d0c7cf600d00ef4bd447f96811762768ededb6c8dca",
+    ".github/workflows/verify.yml": "4762913dc45db3ea5cc4a9026bbe65f1ec7dc3e2b289a71b11d35179d7c9b459",
     ".gitignore": "f9ce7b18d3e3d062756b719467664e3b544ea587b175d40e48d72fe8696ea972",
     "Dockerfile.assurance": "fd6fd27ed4775d6b172b76997e5c8420c45137f2533e6706a0b00244e3cda68e",
     "LICENSE": "1819462f2e141f8a0f1371c5191ad9ceffe1455611b2d2359674485cb7c3a8c5",
